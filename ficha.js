@@ -11553,6 +11553,10 @@ const compendioShikigamis = [
             descricao: "Alcance de 36m. Dano energético."
         },
         {
+            nome: "Repor Energia",
+            descricao: "Recupera PE do portador igual a metade do nível dele (1x por Descanso Longo)."
+        },
+        {
             nome: "Amor Mútuo",
             custo: "20 PE",
             dano: "20d12+90",
@@ -11563,7 +11567,6 @@ const compendioShikigamis = [
     caracteristicas: [
         "Armazém Amaldiçoado: Armazena itens (limite = Mod. FOR). Pode retirar itens mesmo sem invocá-la.",
         "Proteção Apaixonada: Se o portador chegar a 0 PV, Rika nega o dano por completo (1x por Descanso Curto/Longo). Ativa mesmo não invocada.",
-        "Repor Energia: Recupera PE do portador igual a metade do nível dele (1x por Descanso Longo)."
         "Resistências: Resistência a Danos Físicos."
     ]
 }
@@ -12545,4 +12548,3 @@ window.previewImage = function(event) {
     reader.readAsDataURL(arquivo);
 
 };
-
