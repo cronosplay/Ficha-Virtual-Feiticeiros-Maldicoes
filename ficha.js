@@ -3361,10 +3361,498 @@ requisito: ""
     </ul>
     Ao fim da cena, você recebe 5 níveis de exaustão.
 `
-}
+},
+{
+    nome: "Movimento em 24 Quadros",
+    categoria: "PROJEÇÃO",
+    nivel: 0,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Locomoção Aprimorada</strong><br>
+    Possuindo 24 quadros em um segundo para poder realizar seus movimentos, sua locomoção é diferente do padrão, superando o comum.<br><br>
 
+    <strong>Efeitos:</strong><br>
+    • Seu valor de movimento aumenta em <strong>3 metros</strong>.<br>
+    • Sempre que se mover, caso uma criatura tente realizar um ataque de oportunidade contra você, ela deve realizar um <strong>TR de Reflexos</strong>. Em caso de falha, o ataque é cancelado.
+    </div>
+    `
+},
+{
+    nome: "Reflexos Apurados",
+    categoria: "PROJEÇÃO",
+    nivel: 0,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Percepção Diferenciada</strong><br>
+    Ao dividir cada segundo em 24 quadros, sua capacidade de reação se torna muito superior à de feiticeiros comuns.<br><br>
 
+    <strong>Bônus:</strong><br>
+    • Você recebe um bônus fixo de <strong>+1 em Reflexos</strong>.
+    </div>
+    `
+},
+{
+    nome: "Conjunto de Movimentos Rápidos",
+    categoria: "PROJEÇÃO",
+    nivel: 1,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Completa",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Sequência Pré-determinada</strong><br>
+    Você inicia uma sequência de movimentos quase impossíveis de acompanhar, movendo-se todo o seu valor de movimento.<br><br>
 
+    <strong>Efeitos:</strong><br>
+    • Durante o movimento, você pode usar sua <strong>Ação Comum e Bônus</strong> normalmente.<br>
+    • <strong>Ataques:</strong> Se atacar durante o movimento, o alvo deve fazer um <strong>TR de Reflexos</strong>; se falhar, fica <strong>Desprevenido</strong> contra o ataque.<br>
+    • <strong>Reações:</strong> Criaturas que tentarem reações contra você durante o trajeto devem passar em um <strong>TR de Reflexos</strong> ou perderão a reação.
+    </div>
+    `
+},
+{
+    nome: "Acúmulo de Velocidade",
+    categoria: "PROJEÇÃO",
+    nivel: 1,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Reação",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Sustentada",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Aceleração Contínua</strong><br>
+    Uma vez por rodada, ao se mover, você começa a acumular velocidade residual em seus quadros.<br><br>
+
+    <strong>Progressão:</strong><br>
+    • <strong>Inicial:</strong> Seu movimento aumenta em <strong>3 metros</strong>.<br>
+    • <strong>Sustentação:</strong> Custo de <strong>1 PE</strong> por turno. A cada novo movimento, ganha <strong>+1,5 metros</strong> adicionais.<br>
+    • <strong>Limite:</strong> Pode acumular bônus até o limite do seu modificador de <strong>Destreza</strong>. O bônus zera se parar de sustentar.
+    </div>
+    `
+},
+{
+    nome: "Projetar Impacto",
+    categoria: "PROJEÇÃO",
+    nivel: 1,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Comum",
+    alcance: "Toque",
+    alvo: "Único",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Golpe Instantâneo</strong><br>
+    <em>Requisito: Conjunto de Movimentos Rápidos Ativo.</em><br>
+    Você projeta seus quadros com o golpe já em mente, atacando antes que o alvo perceba sua aproximação.<br><br>
+
+    <strong>Efeito:</strong><br>
+    • Realize um ataque <strong>Corpo a Corpo</strong>. Se acertar, adiciona <strong>2d6 de dano extra</strong> (pós-ataque) pelo impacto da velocidade.
+    </div>
+    ` + criarEscalaPorNivel("Projetar Impacto", [
+        { dano: "2d6", extra: "Dano de impacto por velocidade" }
+    ])
+},
+{
+    nome: "Movimentação Superior",
+    categoria: "PROJEÇÃO",
+    nivel: 2,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Ação Livre",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Turno Atual",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Otimização de Tempo</strong><br>
+    Sua agilidade permite movimentos superiores sacrificando parte da sua reserva de energia.<br><br>
+
+    <strong>Efeito:</strong><br>
+    • Você pode gastar uma <strong>Ação Livre</strong> para receber metade de seu deslocamento como deslocamento extra.<br>
+    • <strong>Custo Permanente:</strong> Seu máximo de energia amaldiçoada diminui em <strong>4</strong>.
+    </div>
+    `
+},
+{
+    nome: "Congelamento Defensivo",
+    categoria: "PROJEÇÃO",
+    nivel: 2,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Reação",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Regra dos 24 Quadros</strong><br>
+    Você toca uma ameaça ou ataque iminente, forçando-o a seguir a sua projeção e perdendo ímpeto.<br><br>
+
+    <strong>Efeito:</strong><br>
+    • Ao ser alvo de um ataque, você recebe <strong>13 de RD (Redução de Dano)</strong> contra esse ataque específico.
+    </div>
+    `
+},
+{
+    nome: "Retirada Estratégica",
+    categoria: "PROJEÇÃO",
+    nivel: 2,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Reação",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Projeção de Fuga</strong><br>
+    Ideal para situações onde você é flanqueado ou alvo de sequências de ataques.<br><br>
+
+    <strong>Efeito:</strong><br>
+    • Você se move uma distância igual a <strong>metade do seu deslocamento</strong>.<br>
+    • Este movimento <strong>não provoca ataques de oportunidade</strong>.
+    </div>
+    `
+},
+{
+    nome: "Aprimoramento de Movimentação",
+    categoria: "PROJEÇÃO",
+    nivel: 2,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Planejamento Instantâneo</strong><br>
+    Você aprendeu a acumular velocidade no momento exato em que planeja seus quadros.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • Ao ativar o <em>Conjunto Rápido de Movimentos</em>, você ganha <strong>+3 metros</strong> de movimento naquela rodada.<br>
+    • <strong>Custo Permanente:</strong> Seu máximo de energia amaldiçoada diminui em <strong>4</strong>.
+    </div>
+    `
+},
+{
+    nome: "Aprimoramento de Impacto",
+    categoria: "PROJEÇÃO",
+    nivel: 2,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Liberação Cinética</strong><br>
+    Você canaliza a energia do movimento para o golpe, arremessando o inimigo com força bruta.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • <strong>Condição:</strong> Usar durante o <em>Conjunto de Movimentos Rápidos</em>.<br>
+    • <strong>Arremesso:</strong> Alvo faz <strong>TR de Fortitude</strong>. Falha: Arremessado 3,5m x bônus de treinamento (Metade em sucesso).<br>
+    • <strong>Colisão:</strong> Se atingir estrutura, sofre <strong>1d10 de dano</strong> para cada nível de tamanho da estrutura.
+    </div>
+    ` + criarEscalaPorNivel("Aprimoramento de Impacto", [
+        { dano: "1d10", extra: "Dano por colisão (por tamanho da estrutura)" }
+    ])
+},
+{
+    nome: "Brutalidade Veloz",
+    categoria: "PROJEÇÃO",
+    nivel: 2,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Potência Destrutiva</strong><br>
+    Sua força aumenta proporcionalmente à distância percorrida em combate.<br><br>
+
+    <strong>Bônus:</strong><br>
+    • A cada <strong>3 metros</strong> percorridos, recebe <strong>+1 nível de dano</strong> nos ataques.<br>
+    • <strong>Limite:</strong> Metade do seu bônus de Destreza ou Força.<br>
+    • <strong>Custo Permanente:</strong> Seu máximo de energia amaldiçoada diminui em <strong>4</strong>.
+    </div>
+    `
+},
+{
+    nome: "Concentração Ágil",
+    categoria: "PROJEÇÃO",
+    nivel: 2,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Concentração",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Além dos Limites</strong><br>
+    Você foca totalmente em sua velocidade, permitindo que seu corpo execute movimentos precisos e ultra-rápidos.<br><br>
+
+    <strong>Efeito:</strong><br>
+    • Enquanto estiver concentrado, você recebe um bônus de <strong>+3 em rolagens de ataque</strong>.
+    </div>
+    `
+},
+{
+    nome: "Movimentos Inelegíveis",
+    categoria: "PROJEÇÃO",
+    nivel: 3,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Velocidade Inigualável</strong><br>
+    Seus movimentos assemelham-se a borrões ou flashes, tornando-os impossíveis de prever ou ler.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • A <strong>Classe de Dificuldade (CD)</strong> para resistir aos efeitos de suas habilidades de técnica aumenta em <strong>+2</strong>.<br>
+    • <strong>Custo Permanente:</strong> Seu máximo de energia amaldiçoada diminui em <strong>6</strong>.
+    </div>
+    `
+},
+{
+    nome: "Tempo de Reação Acelerado",
+    categoria: "PROJEÇÃO",
+    nivel: 3,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Hiper-Percepção</strong><br>
+    Sua técnica permite enxergar brechas milimétricas dentro dos 24 quadros para reagir com velocidade divina.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • Você recebe <strong>uma reação adicional</strong> por rodada.<br>
+    • <strong>Restrição:</strong> Esta reação extra só pode ser usada para ativar suas <strong>técnicas</strong>.<br>
+    • <strong>Custo Permanente:</strong> Seu máximo de energia amaldiçoada diminui em <strong>6</strong>.
+    </div>
+    `
+},
+{
+    nome: "Aprimoramento de Projeção",
+    categoria: "PROJEÇÃO",
+    nivel: 3,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Ofensiva Cinética</strong><br>
+    Você refina o impacto mental causado pela velocidade da sua projeção.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • Caso um alvo falhe no teste de Reflexos durante o <em>Conjunto Rápido de Movimentos</em>, ele recebe a condição <strong>Confuso</strong> além de <strong>Desprevenido</strong>.<br>
+    • <strong>Custo Permanente:</strong> Seu máximo de energia amaldiçoada diminui em <strong>6</strong>.
+    </div>
+    `
+},
+{
+    nome: "Golpes Ágeis",
+    categoria: "PROJEÇÃO",
+    nivel: 3,
+    tipo: "Habilidade Passiva",
+    conjuracao: "Passiva",
+    alcance: "Pessoal",
+    alvo: "Você",
+    duracao: "Permanente",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Mestre do Posicionamento</strong><br>
+    Sua movimentação implacável permite que você castigue qualquer erro de posicionamento do oponente.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • Se você utilizou apenas <strong>metade do seu deslocamento</strong> no turno, pode forçar um alvo a um teste de <strong>Percepção vs seus Reflexos</strong>.<br>
+    • Em caso de falha do alvo, você realiza um <strong>Ataque de Oportunidade</strong> usando sua reação.<br>
+    • <strong>Limite:</strong> Uma vez por rodada.<br>
+    • <strong>Custo Permanente:</strong> Seu máximo de energia amaldiçoada diminui em <strong>6</strong>.
+    </div>
+    `
+},
+{
+    nome: "Dominação pela Velocidade",
+    categoria: "PROJEÇÃO",
+    nivel: 3,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Reação",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Esquiva Reativa</strong><br>
+    Seu tempo de reação inigualável permite que você minimize danos e se reposicione instantaneamente.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • <strong>Defesa:</strong> Ao ser alvo de um ataque, você recebe <strong>18 de RD</strong> contra aquele golpe específico.<br>
+    • <strong>Movimentação:</strong> Você pode se mover até <strong>metade do seu deslocamento</strong> para longe do atacante.<br>
+    • <strong>Evasão:</strong> Este movimento <strong>não causa ataques de oportunidade</strong>.
+    </div>
+    `
+},
+{
+    nome: "Congelamento Destrutivo",
+    categoria: "PROJEÇÃO",
+    nivel: 3,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "Toque",
+    alvo: "Próprio",
+    duracao: "Concentração",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Vibração Molecular</strong><br>
+    Você utiliza o congelamento da técnica de forma agressiva, fragilizando a estrutura do alvo durante o impacto.<br><br>
+
+    <strong>Efeitos (Sustentado):</strong><br>
+    • Sempre que realizar um ataque, o alvo deve fazer um <strong>TR de Reflexos</strong>.<br>
+    • <strong>Falha:</strong> O alvo recebe a condição <strong>Exposto</strong> e o dano do ataque aumenta em <strong>2 níveis</strong>.<br><br>
+
+    <strong>Melhoria de Nível:</strong><br>
+    • <strong>Nível 4:</strong> Em caso de falha no TR, o alvo também recebe a condição <strong>Paralisado</strong> durante o ataque.
+    </div>
+    `
+},
+{
+    nome: "Destruição Velocista",
+    categoria: "PROJEÇÃO",
+    nivel: 4,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Comum",
+    alcance: "Toque",
+    alvo: "Único",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Enxurrada Cinética</strong><br>
+    <em>Requisito: Utilizar Conjunto de Movimentos Rápidos por 3+ rodadas seguidas.</em><br>
+    Você acumula uma velocidade colossal e descarrega uma sequência frenética de golpes no alvo.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • Você realiza <strong>3 ataques</strong> contra o mesmo alvo.<br>
+    • Cada acerto causa <strong>4d8 de dano adicional</strong> (pós-ataque).<br>
+    • <strong>Penalidade:</strong> A partir do segundo ataque, você recebe <strong>-3 nos testes de ataque</strong>.
+    </div>
+    ` + criarEscalaPorNivel("Destruição Velocista", [
+        { dano: "4d8", extra: "Dano adicional por cada um dos 3 ataques" }
+    ])
+},
+{
+    nome: "Eu vou te esmagar com velocidade!",
+    categoria: "PROJEÇÃO",
+    nivel: 4,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Completa",
+    alcance: "Corpo a Corpo",
+    alvo: "Único",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Devastação Instantânea</strong><br>
+    Você utiliza a forma mais brutal da sua técnica para não deixar pedra sobre pedra, sobrecarregando o cérebro do oponente.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • <strong>Sobrecarga Mental:</strong> Alvo faz <strong>TR de Astúcia</strong>. Falha: Fica <strong>Atordoado</strong>.<br>
+    • <strong>Impacto:</strong> Você se afasta e retorna com velocidade máxima. Realize um ataque Corpo a Corpo.<br>
+    • <strong>Dano:</strong> Em caso de sucesso, causa o dano da arma + <strong>10d10 de dano adicional</strong> (pós-ataque).
+    </div>
+    ` + criarEscalaPorNivel("Eu vou te esmagar com velocidade!", [
+        { dano: "10d10", extra: "Dano massivo de impacto veloz" }
+    ])
+},
+{
+    nome: "Não o deixarei respirar",
+    categoria: "PROJEÇÃO",
+    nivel: 5,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Comum",
+    alcance: "Toque",
+    alvo: "Único",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Combo Aéreo Cinético</strong><br>
+    Você rodeia o alvo em velocidades absurdas, iniciando uma sequência de golpes que o impedem de reagir.<br><br>
+
+    <strong>Execução:</strong><br>
+    • <strong>Primeiro Golpe:</strong> Teste de Corpo a Corpo. Sucesso causa dano da arma + <strong>7d12</strong> e arremessa o alvo para cima.<br>
+    • <strong>Segundo Golpe:</strong> Se usar <em>Conjunto de Movimentos Rápidos</em>, você aparece acima dele. Realize novo teste com <strong>-3 de debuff</strong>.<br>
+    • <strong>Finalização:</strong> Sucesso causa dano da arma + <strong>7d12</strong>, joga o alvo no chão e aplica a condição <strong>Caído</strong>.
+    </div>
+    ` + criarEscalaPorNivel("Não o deixarei respirar", [
+        { dano: "7d12", extra: "Dano adicional por cada acerto do combo" }
+    ])
+},
+{
+    nome: "Velocidade Esmagadora",
+    categoria: "PROJEÇÃO",
+    nivel: 5,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Completa",
+    alcance: "Toque",
+    alvo: "Único",
+    duracao: "Imediata",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>Conversão Cinética Total</strong><br>
+    Você converte o acúmulo de movimento em energia amaldiçoada pura para paralisar e destruir o oponente.<br><br>
+
+    <strong>Efeitos:</strong><br>
+    • <strong>Controle:</strong> Alvo realiza <strong>TR de Reflexos</strong>. Falha: Fica <strong>Paralisado por 1 rodada</strong>.<br>
+    • <strong>Ataque:</strong> Teste de Corpo a Corpo contra a defesa do alvo.<br>
+    • <strong>Dano:</strong> Causa o dano do ataque com um adicional de <strong>7d12</strong> (pós-ataque).
+    </div>
+    ` + criarEscalaPorNivel("Velocidade Esmagadora", [
+        { dano: "7d12", extra: "Dano adicional de impacto convertido" }
+    ])
+},
+{
+    nome: "F = ma",
+    categoria: "PROJEÇÃO",
+    nivel: 5,
+    tipo: "Habilidade de Técnica Máxima",
+    conjuracao: "Ação Completa",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "5 Rodadas",
+    desc: `
+    <div style="overflow-y: auto; max-height: 250px; padding-right: 5px;">
+    <strong>A Física da Destruição</strong><br>
+    Força é igual a massa x aceleração. Você se torna a personificação dessa lei, atingindo velocidades que desafiam a realidade.<br><br>
+
+    <strong>Efeitos Ativos:</strong><br>
+    • <strong>Atributos:</strong> Você iguala seu atributo de <strong>Destreza ao de Força</strong> (utilize o maior valor entre os dois).<br>
+    • <strong>Mobilidade:</strong> Recebe <strong>+9 metros</strong> de deslocamento adicional.<br>
+    • <strong>Potência:</strong> Seus ataques recebem um bônus de <strong>+4 níveis de dano</strong>.<br><br>
+
+    <strong>Sobrecarga:</strong><br>
+    • Uma vez durante a técnica, você pode garantir o efeito do <strong>Congelamento Destrutivo</strong> automaticamente.<br>
+    • <strong>Penalidade:</strong> Em troca dessa garantia, você recebe <strong>-3 em todas as suas CDs</strong> até o fim da duração da técnica máxima.
+    </div>
+    `
+},
+    
 ];
 
 
@@ -12058,4 +12546,5 @@ window.previewImage = function(event) {
     }
 
     reader.readAsDataURL(arquivo);
+
 };
