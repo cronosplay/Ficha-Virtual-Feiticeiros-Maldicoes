@@ -406,7 +406,7 @@ function finalizarFicha() {
     console.log("Ficha salva com ID: " + personagem.id);
     
     // 7. Redirecionar para o Dashboard (ou ficha.html se preferir abrir direto)
-    window.location.href = 'dashboard.html';
+    window.location.href = 'index.html';
 }
 
 // Remova o addEventListener('submit') antigo que estava dando erro e use apenas a função acima no botão.
@@ -424,11 +424,12 @@ document.getElementById('form-criacao').addEventListener('submit', (e) => {
     localStorage.setItem('fichas', JSON.stringify(fichas));
 
     alert("Feiticeiro Registrado!");
-    window.location.href = 'dashboard.html';
+    window.location.href = 'index.html';
 });
 
 window.onload = () => {
     if (typeof initAtributos === "function") initAtributos();
     // Se a função initOrigens não existir, o JS não vai mais tentar chamar e dar erro.
     if (typeof initOrigens === "function") initOrigens(); 
+
 };
