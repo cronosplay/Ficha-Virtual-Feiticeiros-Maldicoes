@@ -1,0 +1,1248 @@
+/* PALETA DARK MODERN + ACENTO ROXO/VINHO */
+:root {
+    --bg-dark: #0f0f14;       /* Fundo principal */
+    --card-bg: #1a1a22;       /* Cinza grafite dos cards */
+    --border-soft: #2a2a35;   /* Borda sutil */
+    --primary-red: #bf2c2c; /* Roxo principal */
+    --secondary-wine: #9d0208; /* Vinho secundário */
+    --text-pure: #f1f1f1;     /* Texto branco suave */
+    --text-muted: #88889a;    /* Texto de apoio */
+    --input-bg: #0a0a0e;      /* Fundo de inputs mais profundo */
+}
+
+.red-text {
+    color: #f02020 !important; /* A cor vermelha neon que definimos antes */
+    text-shadow: 0 0 5px rgba(240, 32, 32, 0.5);
+}
+
+/* RESET E BASE */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-pure);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    padding: 40px 20px;
+}
+
+/* STEPPER (BARRA DE PROGRESSO) */
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    position: relative;
+    gap: 8px;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--border-soft);
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+}
+
+.step.active {
+    color: var(--primary-red);
+    border-bottom: 3px solid var(--primary-red);
+    filter: drop-shadow(0 0 5px rgba(191, 44, 44, 0.5));
+}
+
+/* CARDS E SEÇÕES */
+.form-step {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-soft);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-left: 5px solid var(--secondary-wine);
+    padding-left: 20px;
+    margin-bottom: 35px;
+}
+
+/* GRID DE ATRIBUTOS */
+.atributos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+}
+
+/* 3. Padronização e Impacto */
+.attr-box {
+    padding: 35px 20px; /* Mais padding interno */
+    border-radius: 12px;
+    background: #0d0d12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espaço constante entre elementos */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.attr-box:hover {
+    transform: translateY(-5px) scale(1.02); /* Micro interação */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.attr-value {
+    font-size: 3.8rem; /* Número bem grande e impactante */
+    font-weight: 900;
+    margin: 10px 0;
+    line-height: 1;
+}
+
+/* 4. Botões de Controle (▲ ▼) */
+.btn-control {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.btn-control:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+.attr-name {
+    color: var(--primary-red);
+    font-weight: 800;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.attr-value {
+    font-size: 2.8rem;
+    font-weight: 900;
+    display: block;
+    margin-bottom: 15px;
+    color: var(--text-pure);
+}
+
+/* CONTROLES (SETAS ▲/▼) */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+/* ACORDEÃO (ORIGENS) */
+.accordion-item {
+    background: var(--input-bg);
+    border: 1px solid var(--border-soft);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.accordion-header {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    color: var(--text-pure);
+}
+
+.arrow {
+    color: var(--primary-red);
+    font-size: 0.8rem;
+    transition: 0.4s;
+}
+
+.accordion-content {
+    max-height: 0;
+    padding: 0 30px;
+    overflow: hidden;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    transition: all 0.4s ease-in-out;
+}
+
+.habilidades-box {
+    margin: 15px 0;
+    padding: 20px;
+    background: rgba(191, 44, 44, 0.05);
+    border-left: 3px solid var(--secondary-wine);
+    border-radius: 0 8px 8px 0;
+    color: #e0e0e0;
+}
+
+.active-origem {
+    border-color: var(--primary-red);
+    background: rgba(191, 44, 44, 0.03);
+}
+
+.active-origem .accordion-content {
+    max-height: 600px; /* Ajuste conforme necessário */
+    padding-bottom: 25px;
+}
+
+.active-origem .arrow {
+    transform: rotate(180deg);
+}
+
+/* GRID DE OPÇÕES (CLÃ/ANATOMIA) */
+.grid-opcoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.btn-metodo {
+    background: var(--input-bg);
+    border: 1px solid var(--border-soft);
+    color: var(--text-pure);
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-metodo:hover, .btn-metodo.active {
+    border-color: var(--primary-red);
+    background: rgba(180, 0, 0, 0.1);
+}
+
+/* INPUTS, TEXTAREA E SELECT */
+input, textarea, select {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--border-soft);
+    color: var(--text-pure);
+    padding: 18px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 10px rgba(191, 44, 44, 0.2);
+}
+
+select {
+    appearance: none;
+    cursor: pointer;
+}
+
+/* BOTÕES DE NAVEGAÇÃO */
+.botoes-nav {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-save, .btn-roll {
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-wine));
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    flex: 2;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    background: #2a2a35;
+    color: var(--text-pure);
+    border: 1px solid var(--border-soft);
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    flex: 1;
+    font-weight: 700;
+}
+
+.btn-primary:disabled {
+    background: #2a2a35;
+    color: #555;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.ponto-display {
+    text-align: center;
+    background: rgba(180, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px dashed var(--primary-red);
+    font-weight: bold;
+}
+
+.hidden { display: none !important; }
+
+/* RESPONSIVO */
+@media (max-width: 650px) {
+    .atributos-grid { grid-template-columns: 1fr 1fr; }
+    .grid-opcoes { grid-template-columns: 1fr; }
+    .stepper { display: none; } /* Oculta em telas pequenas para economizar espaço */
+}
+
+/* ESTILIZAÇÃO DOS BOTÕES DE MÉTODO (Valores Fixos, Compra, Rolagem) */
+/* Container dos Seletores */
+/* Container dos Seletores */
+.metodo-selector {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Aumentei o espaço entre eles */
+    margin: 40px 0;
+}
+
+/* Estilo dos Botões Grandes */
+.metodo-selector button {
+    background: #0a0a0e; 
+    color: #555565;      
+    border: 1px solid #1a1a22; 
+    
+    /* AUMENTO AQUI */
+    padding: 18px 45px;      /* Mais altura e largura interna */
+    min-width: 180px;        /* Garante que nenhum fique pequeno demais */
+    font-size: 1rem;         /* Texto um pouco maior */
+    
+    border-radius: 10px;   
+    font-weight: 800;
+    letter-spacing: 2px;     /* Espaçamento maior entre letras para estilo "Premium" */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transição mais suave */
+    text-transform: uppercase;
+}
+
+/* Efeito de Hover */
+.metodo-selector button:hover {
+    color: #ffffff;
+    border-color: #444;
+    background: #12121a;
+    transform: translateY(-2px); /* Eleva levemente o botão ao passar o mouse */
+}
+
+/* Botão Ativo (Destaque conforme a imagem) */
+.metodo-selector button.active {
+    background: #0d0d12;
+    color: #ffffff; 
+    border: 2px solid #ffffff; /* Borda branca nítida como na imagem */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
+    transform: scale(1.05); /* Deixa o selecionado levemente maior que os outros */
+}
+
+@media (max-width: 600px) {
+    .metodo-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .metodo-selector button {
+        width: 100%;
+    }
+}
+
+/* Ajuste para o botão de Rolar Dados (4d6) */
+.btn-roll {
+    margin-top: 10px;
+    padding: 15px 30px;
+    font-size: 0.9rem;
+    max-width: 300px;
+}
+
+/* --- TÍTULO DA SEÇÃO --- */
+
+/* --- AJUSTE DO PASSO 3 (ESPECIALIZAÇÕES) --- */
+#step-3 {
+    display: none; /* Padrão escondido */
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+/* Quando o JS remove o .hidden */
+#step-3:not(.hidden) {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+#step-3.hidden {
+    display: none !important;
+}
+
+#step-3 .header-section {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#step-3 h2 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+#step-3 .subtitle {
+    opacity: 0.5;
+    font-size: 1rem;
+}
+
+/* --- CONTAINER PAI --- */
+.container, .form-container {
+    max-width: 95% !important;
+    width: auto !important;
+    transition: max-width 0.5s ease;
+}
+
+/* --- CONTAINER DOS CARDS --- */
+.classes-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 20px auto !important;
+    padding: 10px !important;
+}
+
+/* --- CARD --- */
+.class-card {
+    background: rgba(13, 13, 18, 0.95) !important;
+    flex: 0 1 calc(33.33% - 20px) !important;
+    min-width: 320px !important;
+    max-width: 380px !important;
+    height: 750px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    border: 1px solid rgba(179, 0, 0, 0.3) !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(191, 44, 44, 0.05) !important;
+
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.class-card:hover {
+    transform: translateY(-12px) scale(1.02) !important;
+    border-color: #e63946 !important;
+    box-shadow: 0 20px 40px rgba(191, 44, 44, 0.2),
+                inset 0 0 30px rgba(180, 0, 0, 0.1) !important;
+}
+
+/* --- HEADER --- */
+.class-header {
+    flex-shrink: 0 !important;
+    background: linear-gradient(180deg, rgba(180, 0, 0, 0.15) 0%, transparent 100%) !important;
+    padding: 30px 20px !important;
+    text-align: center !important;
+    border-bottom: 2px solid rgba(191, 44, 44, 0.5) !important;
+}
+
+.class-header h3 {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 1.8rem !important;
+    margin: 0 !important;
+    color: #fff !important;
+    text-shadow: 0 0 10px rgba(230, 57, 70, 0.8) !important;
+    letter-spacing: 3px !important;
+}
+
+/* --- CONTEÚDO COM SCROLL --- */
+.class-content {
+    flex: 1 !important;              /* Ocupa o espaço entre header e botão */
+    overflow-y: auto !important;     /* Ativa o scroll */
+    min-height: 0 !important;        /* ESSENCIAL para o scroll funcionar dentro do flex */
+    padding: 25px !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    color: #e0e0e0 !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Scroll */
+.class-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.class-content::-webkit-scrollbar-thumb {
+    background: #bf2c2c;
+    border-radius: 10px;
+}
+
+/* --- DETALHES INTERNOS --- */
+.class-desc {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    color: #b0b0b0 !important;
+    margin-bottom: 25px !important;
+    border-left: 3px solid #bf2c2c;
+    padding-left: 15px;
+}
+
+.class-stats {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+}
+
+.class-section h4 {
+    font-family: 'Orbitron', sans-serif !important;
+    color: #e63946 !important;
+    font-size: 0.85rem !important;
+    margin-top: 30px !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.class-section h4::after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.5), transparent);
+}
+
+/* --- BOTÃO --- */
+.btn-escolher {
+    width: 100% !important;        /* ocupa largura total do card */
+    height: 60px !important;       /* altura fixa idêntica */
+    padding: 0 !important;         /* remove variação interna */
+
+    flex-shrink: 0 !important;
+    margin-top: auto !important;
+
+    background: #bf2c2c !important;
+    color: white !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-weight: bold !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+
+    border: none !important;
+    border-radius: 0 0 20px 20px !important; /* encaixa perfeito no card */
+
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+
+.btn-escolher:hover {
+    background:#ff4d4d !important;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5) !important;
+    transform: translateY(-2px) !important;
+}
+
+.btn-escolher:active {
+    transform: translateY(1px) !important;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1100px) {
+    .class-card {
+        flex: 0 1 calc(50% - 20px) !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .class-card {
+        flex: 0 1 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Container das Origens */
+.origins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    max-height: 60vh; /* Mantém um tamanho bom para a tela */
+    overflow-y: auto; /* Scroll caso tenha muitas origens */
+    padding-right: 10px;
+}
+
+/* Scrollbar personalizada para as origens */
+.origins-grid::-webkit-scrollbar { width: 6px; }
+.origins-grid::-webkit-scrollbar-thumb { background: #bf2c2c; border-radius: 10px; }
+
+/* Estilo do Card Individual */
+.origin-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(191, 44, 44, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.origin-card:hover {
+    background: rgba(180, 0, 0, 0.1);
+    border-color: #e63946;
+    transform: translateY(-5px);
+}
+
+/* Card Selecionado */
+.origin-card.selected {
+    background: rgba(191, 44, 44, 0.2) !important;
+    border-color: #e63946 !important;
+    box-shadow: 0 0 20px rgba(220, 20, 60, 0.2), 
+                inset 0 0 15px rgba(220, 20, 60, 0.1);
+}
+
+.origin-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.origin-desc {
+    font-size: 0.9rem;
+    color: #bbb;
+    line-height: 1.4;
+}
+
+.origin-bonus {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    color: #e63946;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-top: auto;
+}
+
+/* Indicador de Seleção */
+.origin-card.selected::after {
+    content: "✓";
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #e63946;
+    font-weight: bold;
+}
+
+/* --- CONTAINER DAS ORIGENS --- */
+.origins-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* --- O CARD (ESTILO GLASS NEON) --- */
+.origin-card-expandable {
+    background: rgba(15, 15, 15, 0.6); /* Fundo bem translúcido */
+    backdrop-filter: blur(10px);      /* Efeito de vidro */
+    border: 1px solid rgba(220, 20, 60, 0.3); /* Borda roxa discreta */
+    border-radius: 12px;
+    overflow: hidden; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- MOSTRAR TAG E BRILHO APENAS NO SELECIONADO --- */
+.origin-card-expandable.selected {
+    border: 1px solid #bf2c2c !important;
+    box-shadow: 0 0 20px rgba(191, 44, 44, 0.4);
+    background: rgba(20, 10, 30, 0.9);
+}
+
+.origin-card-expandable.selected .selection-tag {
+    display: inline-block; /* Só aparece quando o card tem a classe .selected */
+}
+/* --- CABEÇALHO (ONDE CLICA) --- */
+.card-main-info {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+}
+
+.title-group h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- TAG (ESTILO BADGE DA IMAGEM) --- */
+.tag {
+    font-size: 0.65em;
+    background: #bf2c2c; /* Roxo sólido da imagem */
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+/* --- CONTEÚDO EXPANSÍVEL --- */
+.origin-details {
+    display: none; 
+    padding: 0 25px 25px 25px;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.origin-card-expandable.active .origin-details {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+/* --- SCROLL INTERNO (COM O ESTILO QUE VOCÊ PEDIU) --- */
+.scroll-internal {
+    max-height: 280px; 
+    overflow-y: auto;  
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+/* Barra de scroll combinando com o design */
+.scroll-internal::-webkit-scrollbar {
+    width: 4px;
+}
+.scroll-internal::-webkit-scrollbar-thumb {
+    background: #bf2c2c;
+    border-radius: 10px;
+}
+
+/* --- CAIXA DE ATRIBUTOS/CARACTERÍSTICAS --- */
+.features-box {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.features-box h4 {
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.features-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features-box li {
+    padding-left: 15px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.features-box li::before {
+    content: "•";
+    color: #bf2c2c;
+    position: absolute;
+    left: 0;
+}
+
+/* --- BOTÃO SELECIONAR (Estilo da sua imagem) --- */
+.btn-select-origin {
+    width: calc(100% - 40px);
+    margin: 10px 20px 20px 20px;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #bf2c2c;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-select-origin:hover {
+    background: #e63946;
+    filter: brightness(1.2);
+    box-shadow: 0 0 20px rgba(191, 44, 44, 0.4);
+}
+
+/* Animação suave para abrir */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container para o indicador de seleção */
+.selection-mark {
+    display: none; /* Escondido por padrão */
+    color: #bf2c2c;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-shadow: 0 0 8px rgba(230, 57, 70, 0.8);
+    border: 1px solid #bf2c2c;
+    padding: 2px 10px;
+    border-radius: 20px;
+    animation: pulseGlow 2s infinite;
+}
+
+/* Quando o card estiver selecionado, mostre a marca e brilhe a borda */
+.origin-card-expandable.selected {
+    border-color: #bf2c2c !important;
+    box-shadow: 0 0 25px rgba(191, 44, 44, 0.6) !important;
+    background: rgba(40, 10, 60, 0.2) !important; /* Fundo levemente mais roxo */
+}
+
+.origin-card-expandable.selected .selection-mark {
+    display: inline-block; /* Mostra a marca no card selecionado */
+}
+
+/* Animação de pulsação para o brilho da marca */
+@keyframes pulseGlow {
+    0% { opacity: 0.6; box-shadow: 0 0 5px rgba(191, 44, 44, 0.2); }
+    50% { opacity: 1; box-shadow: 0 0 15px rgba(191, 44, 44, 0.5); }
+    100% { opacity: 0.6; box-shadow: 0 0 5px rgba(191, 44, 44, 0.2); }
+}
+
+/* --- GRID PRINCIPAL (3 COLUNAS) --- */
+.tecnicas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Força 3 colunas */
+    gap: 30px; 
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- CARD ESTILO GLASS-NEON --- */
+.tecnica-card {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(191, 44, 44, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* MÁGICA PARA NIVELAR O BOTÃO: */
+    display: flex;
+    flex-direction: column;
+    min-height: 520px; /* Garante que todos os cards tenham o mesmo tamanho */
+}
+
+/* --- EFEITO DE SELEÇÃO --- */
+.tecnica-card.selected {
+    border-color: #bf2c2c;
+    box-shadow: 0 0 30px rgba(191, 44, 44, 0.6);
+    transform: translateY(-10px) scale(1.02);
+    z-index: 10;
+}
+
+/* --- IMAGEM --- */
+.tecnica-img-container {
+    position: relative;
+    height: 180px;
+    width: 100%;
+}
+
+.tecnica-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6) grayscale(20%);
+    transition: 0.5s;
+}
+
+.tecnica-card.selected .tecnica-img {
+    filter: brightness(1) grayscale(0%);
+}
+
+/* --- TAGS FLUTUANTES --- */
+.tecnicas-tags {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+}
+
+.tag-tech {
+    background: #bf2c2c;
+    color: white;
+    font-size: 0.65rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: 800;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Cores específicas das tags */
+.ofensivo { background: rgba(139, 0, 0, 0.85); }
+.defensivo { background: rgba(0, 0, 139, 0.85); }
+.suporte { background: rgba(0, 100, 0, 0.85); }
+.controle { background: rgba(75, 0, 130, 0.85); }
+
+/* --- INFO E TEXTO --- */
+.tecnica-info {
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz esta parte ocupar o espaço que sobrar */
+}
+
+.tecnica-info h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.3rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    min-height: 3.2rem; /* Reserva espaço para títulos de 2 linhas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tecnica-legenda {
+    font-size: 0.9rem;
+    color: #bbb;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    height: 90px; /* Scroll interno obrigatório */
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* --- BOTÃO (ALINHADO NO FUNDO) --- */
+.btn-select-tecnica {
+    margin-top: auto; /* EMPURRA O BOTÃO PARA O FINAL DO CARD */
+    width: 100%;
+    padding: 15px;
+    background: #bf2c2c;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-select-tecnica:hover {
+    background: #bf2c2c;
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.5);
+}
+
+/* --- SCROLL ROXO --- */
+.tecnica-legenda::-webkit-scrollbar { width: 4px; }
+.tecnica-legenda::-webkit-scrollbar-thumb { background: #bf2c2c; border-radius: 10px; }
+
+/* Responsividade */
+@media (max-width: 900px) { .tecnicas-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .tecnicas-grid { grid-template-columns: 1fr; } }
+/* --- CONTAINER PRINCIPAL --- */
+.origin-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* --- O CARD ESTILO DARK NEON --- */
+.origin-card-expandable {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(220, 20, 60, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Efeito de brilho na borda ao passar o mouse */
+.origin-card-expandable:hover {
+    border-color: rgba(220, 20, 60, 0.5);
+    transform: translateX(10px); /* Leve deslize para a direita */
+    box-shadow: -5px 0 20px rgba(191, 44, 44, 0.2);
+}
+
+/* --- HEADER MAIS ESTILIZADO --- */
+.origin-header {
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(220, 20, 60, 0.05) 0%, transparent 100%);
+    cursor: pointer;
+}
+
+.origin-name {
+    font-family: 'Crimson Text', serif; /* Ou uma fonte mais robusta */
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* --- QUANDO SELECIONADO (BRILHO INTENSO) --- */
+.origin-card-expandable.selected {
+    border: 1px solid #bf2c2c;
+    background: linear-gradient(135deg, rgba(50, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
+    box-shadow: 0 0 30px rgba(191, 44, 44, 0.4), inset 0 0 15px rgba(191, 44, 44, 0.2);
+}
+
+.origin-card-expandable.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #bf2c2c;
+    box-shadow: 0 0 15px #bf2c2c;
+}
+
+/* --- TAG SELECIONADA (Escondida por padrão) --- */
+.selection-tag {
+    display: none; /* Isso garante que não apareça em todos */
+    background: #bf2c2c;
+    box-shadow: 0 0 10px #bf2c2c;
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+@keyframes pulse-neon {
+    0% { opacity: 0.7; box-shadow: 0 0 5px #bf2c2c; }
+    50% { opacity: 1; box-shadow: 0 0 20px #bf2c2c; }
+    100% { opacity: 0.7; box-shadow: 0 0 5px #bf2c2c; }
+}
+
+/* --- SCROLL INTERNO OBRIGATÓRIO (MODERNO) --- */
+.origin-description.scroll-internal {
+    height: 180px; 
+    overflow-y: auto;
+    padding: 25px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin: 10px 20px;
+}
+
+/* Barra de Scroll Customizada */
+.scroll-internal::-webkit-scrollbar {
+    width: 4px;
+}
+.scroll-internal::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+.scroll-internal::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #bf2c2c, #bf2c2c);
+    border-radius: 10px;
+}
+
+/* --- BOTÃO DE SELEÇÃO --- */
+.btn-select-origin {
+    width: calc(100% - 40px);
+    margin: 10px 20px 25px 20px;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid #bf2c2c;
+    color: #fff;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 4px;
+}
+
+.btn-select-origin:hover {
+    background: #bf2c2c;
+    color: #000;
+    box-shadow: 0 0 20px #bf2c2c;
+}
+
+/* --- ESTADO INICIAL (ESCONDIDO) --- */
+.origin-content {
+    max-height: 0;
+    overflow: hidden; /* Crucial para o texto não vazar */
+    transition: max-height 0.4s ease-out;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* --- ESTADO ATIVO (ABERTO) --- */
+.origin-card-expandable.active .origin-content {
+    max-height: 1000px; /* Expande o card */
+    border-top: 1px solid rgba(191, 44, 44, 0.2);
+}
+
+/* --- TAG DE SELEÇÃO (ESCONDIDA POR PADRÃO) --- */
+.selection-tag {
+    display: none; /* Isso impede que todos apareçam selecionados ao carregar */
+    background: #bf2c2c;
+    box-shadow: 0 0 10px #bf2c2c;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+/* --- MOSTRAR APENAS NO CARD COM A CLASSE .selected --- */
+.origin-card-expandable.selected .selection-tag {
+    display: inline-block;
+}
+
+.origin-card-expandable.selected {
+    border-color: #bf2c2c !important;
+    box-shadow: 0 0 20px rgba(191, 44, 44, 0.4);
+}
+
+/* --- SCROLL INTERNO OBRIGATÓRIO --- */
+.origin-description.scroll-internal {
+    height: 180px; /* Altura fixa para o scroll aparecer */
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Personalização da barra de rolagem */
+.scroll-internal::-webkit-scrollbar { width: 4px; }
+.scroll-internal::-webkit-scrollbar-thumb { background: #bf2c2c; border-radius: 10px; }
+
+/* Container da Identidade */
+.identity-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Linha de inputs (Nome/Jogador) */
+.input-row {
+    display: flex;
+    gap: 20px;
+}
+
+.input-group, .textarea-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+/* Labels Estilizados */
+.identity-container label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Inputs e Textareas Estilo Vidro */
+.identity-container input, 
+.identity-container textarea {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 12px;
+    color: #eee;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.identity-container input:focus, 
+.identity-container textarea:focus {
+    outline: none;
+    border-color: #bf2c2c;
+    box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+}
+
+/* Textareas com altura fixa e scroll */
+.identity-container textarea {
+    height: 100px;
+    resize: none; /* Impede o usuário de quebrar o layout puxando o canto */
+}
+
+/* Reaproveitando sua regra de Scroll Interno */
+.identity-container textarea.scroll-internal::-webkit-scrollbar {
+    width: 4px;
+}
+
+.identity-container textarea.scroll-internal::-webkit-scrollbar-thumb {
+    background: #bf2c2c;
+    border-radius: 10px;
+}
+
+/* Botão Finalizar Especial */
+#btn-finalizar {
+    background: #bf2c2c;
+    box-shadow: 0 0 15px rgba(191, 44, 44, 0.4);
+    font-weight: 900;
+}

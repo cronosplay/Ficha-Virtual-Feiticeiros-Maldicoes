@@ -1,0 +1,137 @@
+:root {
+    --bg: #0a0a0c;
+    --card-bg: #16161a;
+    --primary: #ff0000;
+    --text: #ffffff;
+    --text-muted: #a0a0a0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container { max-width: 1000px; margin: auto; }
+
+/* Barra Superior e Busca */
+.top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.agentes-count { font-weight: bold; font-size: 1.1rem; }
+.btn-novo { background: #7b2cbf; color: white; border: none; padding: 8px 15px; cursor: pointer; font-weight: bold; }
+
+.search-container input {
+    width: 100%;
+    background: #111;
+    border: 1px solid #333;
+    padding: 10px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Grid em Colunas (como na imagem) */
+.grid-fichas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+/* Card Horizontal Estilo Ordem */
+.card-ficha {
+    background: var(--card-bg);
+    border-radius: 4px;
+    display: flex;
+    padding: 12px;
+    position: relative;
+    border: 1px solid #222;
+}
+
+.card-img-container {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content { flex: 1; }
+
+.card-header { display: flex; justify-content: space-between; }
+.card-header h3 { margin: 0; font-size: 1.1rem; }
+.btn-config { background: none; border: none; color: white; cursor: pointer; opacity: 0.7; }
+
+.card-content p { margin: 2px 0; font-size: 0.85rem; color: var(--text-muted); }
+
+.btn-acessar {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+/* Container do Menu */
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* O Menu em si (escondido por padrão) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: #1a1a1a;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 10;
+    border: 1px solid #333;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Quando o menu tem a classe .show, ele aparece */
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Itens do Menu */
+.dropdown-item {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.2s;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background-color: #333;
+}
+
+.dropdown-item.delete {
+    color: #ff4d4d;
+}
+
+.dropdown-item.delete:hover {
+    background-color: #451a1a;
+}

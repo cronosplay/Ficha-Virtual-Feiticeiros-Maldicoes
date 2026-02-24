@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Painel de Feiticeiros</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1 id="total-feiticeiros" style="color: white; font-size: 1.2rem;">Feiticeiros: 0/15</h1>
+        <button onclick="window.location.href='criacao.html'" style="background: #ff0000; color: white; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold;">+ Novo Personagem</button>
+    </header>
+
+    <input type="text" id="input-busca" placeholder="Buscar feiticeiro..." oninput="renderizarCards()" 
+           style="width: 100%; padding: 10px; background: #1a1a1a; border: 1px solid #333; color: white; margin-bottom: 20px;">
+
+    <div id="lista-fichas" class="grid-fichas"></div>
+</div>
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

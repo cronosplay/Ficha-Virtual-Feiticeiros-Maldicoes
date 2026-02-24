@@ -1,0 +1,170 @@
+/* 1. Fonte Personalizada */
+@font-face {
+    font-family: 'ZapfHumanist';
+    src: url('zapf-humanist-601-demi.otf') format('opentype');
+}
+
+body {
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Container principal */
+.portrait-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 10px 15px;
+    font-family: 'ZapfHumanist', serif;
+}
+
+/* Círculo do Personagem */
+.portrait-main {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.portrait-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6);
+}
+
+.portrait-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================= */
+/* HUD COM NEON SUAVE SEM SOMBRA */
+/* ============================= */
+
+/* PE - Energia (Azul Suave) */
+.recurso-number {
+    position: absolute;
+    bottom: 12px;
+    left: -5px;
+
+    font-size: 38px;
+    font-weight: 600;
+    color: #ffffff;
+
+    text-shadow:
+        0 0 6px rgba(0,120,255,0.7),
+        0 0 14px rgba(0,120,255,0.6);
+}
+
+/* Bloco da Direita */
+.status-values {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: -20px;
+    margin-bottom: 27px;
+
+    /* Inclinação suave para cima/direita */
+    transform: rotate(-6deg);
+    transform-origin: left bottom;
+}
+
+/* Estilo base dos valores */
+.value-item {
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: #ffffff;
+}
+
+/* PV - Vida (Vermelho Suave) */
+.pv {
+    text-shadow:
+        0 0 6px rgba(255,60,60,0.8),
+        0 0 14px rgba(255,0,0,0.6);
+}
+
+/* PI - Integridade (Roxo Suave) */
+.pi {
+    text-shadow:
+        0 0 6px rgba(200,0,255,0.8),
+        0 0 14px rgba(150,0,255,0.6);
+}
+
+/* Dado no portrait */
+.dado-numero-neon {
+    position: absolute;
+    font-family: 'ZapfHumanist', serif;
+    font-size: 2rem;
+    color: #ffffff;
+
+    text-shadow:
+        0 0 6px var(--cor-dado),
+        0 0 14px var(--cor-dado);
+}
+
+/* Log do dado */
+#portrait-log-container {
+    position: fixed;
+    top: 60px;
+    left: 250px;
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: none;
+    width: 200px;
+}
+
+.dado-card {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    animation: dadoPop 0.4s ease-out forwards;
+}
+
+/* Log do dado - Posicionado ao lado dos status */
+#portrait-log-container {
+    position: fixed;
+    top: 50px; /* Ajustado para alinhar com a altura dos seus números */
+    left: 250px; /* Aumentado para dar espaço à inclinação dos números */
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.dado-card {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /* Aplica a mesma inclinação suave dos status para combinar */
+    transform: rotate(-6deg); 
+    animation: dadoPop 0.4s ease-out forwards;
+}
+
+/* O número dentro do dado com brilho dinâmico */
+.dado-numero-neon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centralização perfeita */
+    font-family: 'ZapfHumanist', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    /* O JS vai preencher a variável --cor-brilho */
+    text-shadow: 
+        0 0 6px var(--cor-brilho),
+        0 0 14px var(--cor-brilho);
+}
+
+/* Animação de entrada (Pop) */
+@keyframes dadoPop {
+    0% { opacity: 0; transform: scale(0.5) rotate(-15deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+}

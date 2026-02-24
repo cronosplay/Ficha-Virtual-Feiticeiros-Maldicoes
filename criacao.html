@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Feiticeiro - F&M</title>
+    <link rel="stylesheet" href="criacao.css">
+</head>
+<body>
+    <div class="container">
+        <div class="stepper" id="main-stepper">
+            <div class="step active" id="st-1">1. Atributos</div>
+            <div class="step" id="st-2">2. Origem</div>
+            <div class="step" id="st-3">3. Especialização</div>
+            <div class="step" id="st-4">4. Técnica</div>
+            <div class="step" id="st-5">5. Identidade</div>
+        </div>
+
+        <div id="form-criacao">
+            
+            <section class="form-step" id="step-1">
+                <h2>Atributos de Poder</h2>
+                <div class="metodo-selector">
+                    <button type="button" id="btn-metodo-fixo" onclick="setMetodo('fixo')">Valores Fixos</button>
+                    <button type="button" id="btn-metodo-compra" onclick="setMetodo('compra')">Compra</button>
+                    <button type="button" id="btn-metodo-rolagem" onclick="setMetodo('rolagem')">Rolagem</button>
+                </div>
+
+                <div id="fixo-info" class="ponto-display">Distribua: 15, 14, 13, 12, 10, 8</div>
+                <div id="compra-info" class="ponto-display hidden">Pontos Disponíveis: <span id="pontos-restantes">17</span></div>
+                <div id="rolagem-actions" class="hidden" style="text-align: center; margin-bottom: 20px;">
+                    <button type="button" class="btn-roll" onclick="rolarTodosAtributos()">Rolar Dados (4d6)</button>
+                </div>
+
+                <div class="atributos-grid" id="container-atributos">
+                    </div>
+
+                <div class="botoes-nav">
+                    <button type="button" class="btn-primary" onclick="nextStep(2)">Próximo: Escolher Origem &rarr;</button>
+                </div>
+            </section>
+
+            <section class="form-step hidden" id="step-2">
+    <div class="header-section">
+        <h2>ORIGEM</h2>
+        <p class="subtitle">A essência do seu poder e sua história no mundo Jujutsu.</p>
+    </div>
+
+    <div class="intro-text-card scroll-internal" style="max-height: 150px; margin-bottom: 20px; font-size: 0.9em; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+        <p>A Origem representa de onde vem o poder do seu personagem... É uma decisão imutável, feita apenas na hora de criar o personagem. Certas origens são mais comuns — como o Inato, o Herdado e o Sem Técnica — enquanto outras são mais raras (Derivado, Restringido, Feto Amaldiçoado e Corpo Amaldiçoado).</p>
+    </div>
+
+    <div id="origens-container" class="origins-list">
+        
+    <div class="origin-card-expandable" id="card-Inato">
+        <div class="card-main-info" onclick="toggleOrigin('Inato')">
+            <div class="title-group">
+                <h3>INATO <span class="selection-mark">SELECIONADO</span></h3>
+                <span class="tag">Comum</span>
+            </div>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+        </div>
+        <div class="origin-details scroll-internal">
+            <p class="description">Nascidos com afinidade para energia amaldiçoada e uma técnica própria que se manifesta aos cinco ou seis anos. É uma origem versátil, compatível com a maioria das especializações.</p>
+            <div class="features-box">
+                <h4>CARACTERÍSTICAS</h4>
+                <ul>
+                    <li><strong>Bônus:</strong> +2 em um atributo e +1 em outro.</li>
+                    <li><strong>Talento Natural:</strong> Recebe um Talento à escolha no 1° nível. (Adicional no 4° nível).</li>
+                    <li><strong>Marca Registrada:</strong> Recebe um Feitiço adicional com custo reduzido em 1 PE.</li>
+                </ul>
+            </div>
+            <button class="btn-select-origin" onclick="confirmarOrigem('Inato', 'next')">SELECIONAR INATO</button>
+        </div>
+    </div>
+
+    <div class="origin-card-expandable" id="card-Herdado">
+        <div class="card-main-info" onclick="toggleOrigin('Herdado')">
+            <div class="title-group">
+                <h3>HERDADO <span class="selection-mark">SELECIONADO</span></h3>
+                <span class="tag">Linhagem</span>
+            </div>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+        </div>
+        <div class="origin-details scroll-internal">
+            <p class="description">Capacidade provinda da linhagem sanguínea e clãs tradicionais. Ao escolher esta origem, você deve obrigatoriamente escolher um Clã.</p>
+            <div class="features-box">
+                <h4>CARACTERÍSTICAS</h4>
+                <ul>
+                    <li><strong>Bônus em Atributo:</strong> Baseado no clã escolhido.</li>
+                    <li><strong>Treinamentos de Clã:</strong> Perícias específicas da linhagem.</li>
+                    <li><strong>Herança de Clã:</strong> Capacidades únicas (Gojo, Inumaki, Kamo ou Zenin).</li>
+                </ul>
+            </div>
+            <button class="btn-select-origin btn-highlight" onclick="confirmarOrigem('Herdado', 'cla')">SELECIONAR E ESCOLHER CLÃ</button>
+        </div>
+    </div>
+
+    <div class="origin-card-expandable" id="card-Derivado">
+        <div class="card-main-info" onclick="toggleOrigin('Derivado')">
+            <div class="title-group">
+                <h3>DERIVADO <span class="selection-mark">SELECIONADO</span></h3>
+                <span class="tag">Raro</span>
+            </div>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+        </div>
+        <div class="origin-details scroll-internal">
+            <p class="description">Energia vinda de fontes externas (objetos amaldiçoados ou alteração da alma). Exemplos: Itadori e Junpei.</p>
+            <div class="features-box">
+                <h4>CARACTERÍSTICAS</h4>
+                <ul>
+                    <li><strong>Bônus:</strong> +2 em um atributo e +1 em outro.</li>
+                    <li><strong>Energia Antinatural:</strong> Aptidão de Aura e recuperação de PE (dobro do bônus de treino) 1x/dia.</li>
+                    <li><strong>Desenvolvimento Inesperado:</strong> A cada 4 níveis, +1 em atributo e aumenta o limite desse atributo em 1.</li>
+                </ul>
+            </div>
+            <button class="btn-select-origin" onclick="confirmarOrigem('Derivado', 'next')">SELECIONAR DERIVADO</button>
+        </div>
+    </div>
+
+    <div class="origin-card-expandable" id="card-Restringido">
+        <div class="card-main-info" onclick="toggleOrigin('Restringido')">
+            <div class="title-group">
+                <h3>RESTRINGIDO <span class="selection-mark">SELECIONADO</span></h3>
+                <span class="tag">Especial</span>
+            </div>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+        </div>
+        <div class="origin-details scroll-internal">
+            <p class="description">Energia quase nula em troca de físico superior (Restrição Celeste). Preso à especialização Restringido.</p>
+            <div class="features-box">
+                <h4>CARACTERÍSTICAS</h4>
+                <ul>
+                    <li><strong>Bônus:</strong> +1 em FOR, DEX e CON, mais +2 pontos em atributos físicos.</li>
+                    <li><strong>Físico Abençoado:</strong> Deslocamento +3m, imune a doenças e vantagem contra venenos.</li>
+                    <li><strong>Ápice Corporal:</strong> Limite de atributos físicos é 30. +2 em atributo físico a cada 6 níveis.</li>
+                    <li><strong>Resiliência Imediata:</strong> Reduz dano ou evita desmembramento usando bônus de treino.</li>
+                </ul>
+            </div>
+            <button class="btn-select-origin" onclick="confirmarOrigem('Restringido', 'next')">SELECIONAR RESTRINGIDO</button>
+        </div>
+    </div>
+
+    <div class="origin-card-expandable" id="card-Feto Amaldiçoado Híbrido">
+        <div class="card-main-info" onclick="toggleOrigin('Feto Amaldiçoado Híbrido')">
+            <div class="title-group">
+                <h3>FETO HÍBRIDO <span class="selection-mark">SELECIONADO</span></h3>
+                <span class="tag">Híbrido</span>
+            </div>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+        </div>
+        <div class="origin-details scroll-internal">
+            <p class="description">Mistura de humano e maldição. Possui interação única com energia reversa e anatomia evolutiva.</p>
+            <div class="features-box">
+                <h4>CARACTERÍSTICAS</h4>
+                <ul>
+                    <li><strong>Herança Maldita:</strong> Cura reversa reduzida (metade), mas pode usar PE para se curar.</li>
+                    <li><strong>Físico Amaldiçoado:</strong> Ganha Características de Anatomia no nível 1 e a cada 5 níveis.</li>
+                    <li><strong>Vigor Maldito:</strong> Ação bônus para recuperar vida (5 + MOD. CON).</li>
+                </ul>
+            </div>
+            <button class="btn-select-origin btn-highlight" onclick="confirmarOrigem('Feto Amaldiçoado Híbrido', 'next')">SELECIONAR E IR PARA ESPECIALIZAÇÃO</button>
+        </div>
+    </div>
+
+    <div class="origin-card-expandable" id="card-Sem Técnica">
+        <div class="card-main-info" onclick="toggleOrigin('Sem Técnica')">
+            <div class="title-group">
+                <h3>SEM TÉCNICA <span class="selection-mark">SELECIONADO</span></h3>
+                <span class="tag">Esforço</span>
+            </div>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+        </div>
+        <div class="origin-details scroll-internal">
+            <p class="description">Sem técnica inata, focam no Novo Estilo da Sombra e Domínio Simples. Não podem ser Especialistas em Técnicas.</p>
+            <div class="features-box">
+                <h4>CARACTERÍSTICAS</h4>
+                <ul>
+                    <li><strong>Bônus:</strong> +4 pontos adicionais (máx 3 no mesmo atributo).</li>
+                    <li><strong>Estudos Dedicados:</strong> Treinado em 2 perícias extras.</li>
+                    <li><strong>Empenho Implacável:</strong> Ganha Talentos e bônus conforme sobe de nível.</li>
+                    <li><strong>Novo Estilo da Sombra:</strong> Acesso automático no nível 4.</li>
+                </ul>
+            </div>
+            <button class="btn-select-origin" onclick="confirmarOrigem('Sem Técnica', 'next')">SELECIONAR SEM TÉCNICA</button>
+        </div>
+    </div>
+
+    <div class="origin-card-expandable" id="card-Corpo Amaldiçoado Mutante">
+        <div class="card-main-info" onclick="toggleOrigin('Corpo Amaldiçoado Mutante')">
+            <div class="title-group">
+                <h3>Corpo Amaldiçoado Mutante <span class="selection-mark">SELECIONADO</span></h3>
+                <span class="tag">Sintético</span>
+            </div>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+        </div>
+        <div class="origin-details scroll-internal">
+            <p class="description">Forma de vida artificial com múltiplos núcleos e consciência própria (Ex: Panda).</p>
+            <div class="features-box">
+                <h4>CARACTERÍSTICAS</h4>
+                <ul>
+                    <li><strong>Bônus:</strong> +2 pontos livres em atributos.</li>
+                    <li><strong>Forma Sintética:</strong> Imune a veneno. Não se beneficia de medicina comum.</li>
+                    <li><strong>Mutação Abrupta:</strong> Possui 3 núcleos intercambiáveis em combate.</li>
+                </ul>
+            </div>
+            <button class="btn-select-origin" onclick="confirmarOrigem('Corpo Amaldiçoado Mutante', 'next')">SELECIONAR CORPO MUTANTE</button>
+        </div>
+    </div>
+
+</div>
+
+    <div class="botoes-nav">
+        <button type="button" class="btn-back" onclick="nextStep(1)">Voltar</button>
+        <button type="button" id="btn-origem-next" class="btn-primary" onclick="avancarStepDasOrigens()" disabled>Próximo</button>
+    </div>
+</section>
+
+<section class="form-step hidden" id="step-cla">
+    <h2 class="section-title">HERANÇA DE CLÃ</h2>
+    <p class="section-subtitle">O sangue que corre em suas veias carrega séculos de poder jujutsu.</p>
+
+    <div class="origin-container">
+        
+        <div class="origin-card-expandable" id="card-Gojo">
+            <div class="origin-header" onclick="toggleOrigin('Gojo')">
+                <div class="origin-title-group">
+                    <span class="origin-name">CLÃ GOJO</span>
+                    <span class="selection-tag">SELECIONADO</span>
+                </div>
+                <span class="expand-icon">+</span>
+            </div>
+            <div class="origin-content">
+                <div class="origin-description scroll-internal">
+                    <p>O Clã Gojo descende de Michizane Sugawara. Detentores do Ilimitado e dos Seis Olhos, são o pilar de poder do mundo Jujutsu.</p>
+                    <hr>
+                    <p><strong>Bônus:</strong> +2 Int ou Sab, +1 no outro.</p>
+                    <p><strong>Treinamentos:</strong> 2 perícias (Feitiçaria, Percepção, Intuição) ou 1 Especialização.</p>
+                    <p><strong>Potencial Lendário:</strong> +1 PE em níveis pares. Recebe feitiços adicionais nos níveis 1, 5, 10, 15 e 20.</p>
+                </div>
+                <button type="button" class="btn-select-origin" onclick="confirmarCla('Gojo', 'Gojo')">ESCOLHER CLÃ GOJO</button>
+            </div>
+        </div>
+
+        <div class="origin-card-expandable" id="card-Inumaki">
+            <div class="origin-header" onclick="toggleOrigin('Inumaki')">
+                <div class="origin-title-group">
+                    <span class="origin-name">CLÃ INUMAKI</span>
+                    <span class="selection-tag">SELECIONADO</span>
+                </div>
+                <span class="expand-icon">+</span>
+            </div>
+            <div class="origin-content">
+                <div class="origin-description scroll-internal">
+                    <p>Famosos pela Fala Amaldiçoada e pelo sigilo dos Olhos de Cobra e Presas ao redor da boca.</p>
+                    <hr>
+                    <p><strong>Bônus:</strong> +2 Int ou Pre, +1 no outro.</p>
+                    <p><strong>Treinamentos:</strong> 2 perícias (Feitiçaria, Percepção, Intuição) ou 1 Especialização.</p>
+                    <p><strong>Olhos de Cobra e Presas:</strong> Pode dar um comando de ação bônus para um aliado (uso = bônus de treinamento) por descanso longo.</p>
+                </div>
+                <button type="button" class="btn-select-origin" onclick="confirmarCla('Inumaki', 'Inumaki')">ESCOLHER CLÃ INUMAKI</button>
+            </div>
+        </div>
+
+        <div class="origin-card-expandable" id="card-Kamo">
+            <div class="origin-header" onclick="toggleOrigin('Kamo')">
+                <div class="origin-title-group">
+                    <span class="origin-name">CLÃ KAMO</span>
+                    <span class="selection-tag">SELECIONADO</span>
+                </div>
+                <span class="expand-icon">+</span>
+            </div>
+            <div class="origin-content">
+                <div class="origin-description scroll-internal">
+                    <p>Valorizam o sangue acima de tudo. Mestres na Manipulação de Sangue e na vitalidade absoluta.</p>
+                    <hr>
+                    <p><strong>Bônus:</strong> +2 Con ou Sab, +1 no outro.</p>
+                    <p><strong>Treinamentos:</strong> 2 perícias (Atletismo, Medicina, Persuasão) ou 1 Especialização.</p>
+                    <p><strong>Valor do Sangue:</strong> +1 PV máximo por nível. A partir do nível 10, soma Mod. Con na vida total. Pode rerrolar vida se tirar abaixo da média.</p>
+                </div>
+                <button type="button" class="btn-select-origin" onclick="confirmarCla('Kamo', 'Kamo')">ESCOLHER CLÃ KAMO</button>
+            </div>
+        </div>
+
+        <div class="origin-card-expandable" id="card-Zenin">
+            <div class="origin-header" onclick="toggleOrigin('Zenin')">
+                <div class="origin-title-group">
+                    <span class="origin-name">CLÃ ZENIN</span>
+                    <span class="selection-tag">SELECIONADO</span>
+                </div>
+                <span class="expand-icon">+</span>
+            </div>
+            <div class="origin-content">
+                <div class="origin-description scroll-internal">
+                    <p>Acreditam que poder é tudo. Possuem vasta variedade de técnicas herdadas e foco rigoroso em combate.</p>
+                    <hr>
+                    <p><strong>Bônus:</strong> +2 em um atributo, +1 em outro à escolha.</p>
+                    <p><strong>Treinamentos:</strong> 2 perícias quaisquer ou 1 Especialização.</p>
+                    <p><strong>Foco no Poder:</strong> Escolha feitiços focados (níveis 1, 5, 10, 15, 20) para aumentar dano, cura, alcance ou dificuldade de teste.</p>
+                </div>
+                <button type="button" class="btn-select-origin" onclick="confirmarCla('Zenin', 'Zenin')">ESCOLHER CLÃ ZENIN</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="botoes-nav">
+        <button type="button" class="btn-back" onclick="nextStep(2)">Voltar</button>
+        <button type="button" class="btn-primary" id="btn-cla-next" onclick="nextStep(3)" disabled>Avançar &rarr;</button>
+    </div>
+</section>
+
+            <section class="form-step hidden" id="step-3">
+                
+    <div class="header-section">
+        <h2>Especializações</h2>
+        <p class="subtitle">Escolha como você moldará sua base de poder jujutsu.</p>
+    </div>
+
+    <div class="classes-container">
+
+       <div class="class-card">
+    <div class="class-header">
+        <h3>Lutador</h3>
+    </div>
+    
+    <div class="class-content">
+        <p class="class-desc">
+            Especialista no combate físico e brutalidade. Pode se dedicar a armas marciais ou transformar o próprio corpo na arma. Rápidos, destruidores e resistentes.
+            <br><em>Ex: Yuuji Itadori, Kinji Hakari e Hajime Kashimo.</em>
+        </p>
+
+        <div class="class-stats">
+            <p><strong>PV Inicial:</strong> <span class="red-text">12 + CON</span></p>
+            <p><strong>PV p/ Nível:</strong> <span class="red-text">1d10 (ou 6) + CON</span></p>
+            <p><strong>PE por Nível:</strong> <span class="red-text">4</span></p>
+            <p><strong>Atributos:</strong> FOR ou DES (CD e Efeitos)</p>
+            <p><strong>Multiclasse:</strong> FOR ou DES 16</p>
+        </div>
+
+        <div class="class-section">
+            <h4>TREINAMENTOS</h4>
+            <ul>
+                <li>Armas Simples, Marciais e Escudo Leve</li>
+                <li>Resistência: Fortitude ou Reflexos</li>
+                <li>Ofício, Atletismo ou Acrobacia + 3 perícias</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>CORPO TREINADO (Nível 1)</h4>
+            <p>• <strong>Golpe Rápido:</strong> Ao atacar (desarmado ou arma marcial), pode dar um ataque desarmado como ação bônus.</p>
+            <p>• <strong>Dano Progressivo:</strong> Desarmado causa <strong>1d8</strong>. (Nível 5: 1d10 | 9: 1d12 | 13: 2d8 | 17: 2d12).</p>
+            <p>• <strong>Versatilidade:</strong> Use FOR ou DES para ataques desarmados e marciais.</p>
+        </div>
+
+        <div class="class-section">
+            <h4>SISTEMA DE EMPOLGAÇÃO</h4>
+            <p>Começa no Nível 1. Acerte um ataque/manobra para subir de nível no próximo turno (Máx 5). Erre por uma rodada e o nível desce.</p>
+            
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Nível</th>
+                        <th>Dado</th>
+                        <th>Nível</th>
+                        <th>Dado</th>
+                        <th>Nível</th>
+                        <th>Dado</th>
+                        <th>Nível</th>
+                        <th>Dado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2</td> <td><strong>1d4</strong></td>
+                        <td>3</td> <td><strong>1d6</strong></td>
+                    </tr>
+                    <tr>
+                        <td>4</td> <td><strong>2d4</strong></td>
+                        <td>5</td> <td><strong>2d6</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5>MANOBRAS (Escolha 2 iniciais):</h5>
+            <p>• <strong>Ajuste:</strong> Soma dado de empolgação no acerto e dano.</p>
+            <p>• <strong>Comando:</strong> (1 PE) Aliado próximo ataca junto como reação.</p>
+            <p>• <strong>Desarme:</strong> Tenta desarmar o alvo ao acertar um ataque.</p>
+            <p>• <strong>Esquiva:</strong> Reação para reduzir dano (Dado Empolgação + DES).</p>
+            <p>• <strong>Trabalho de Pés:</strong> Bônus na Defesa igual ao Dado de Empolgação.</p>
+        </div>
+
+        <div class="class-section">
+            <h4>PROGRESSÃO DE PODER</h4>
+            <p>• <strong>Nív 2 - Reflexo Evasivo:</strong> RD a tudo (exceto alma) igual a metade do nível.</p>
+            <p>• <strong>Nív 4 - Implemento Marcial:</strong> +2 na CD de Habilidades e Feitiços.</p>
+            <p>• <strong>Nív 5 - Gosto pela Luta:</strong> +2 Ataque, +1 Fortitude e Dano.</p>
+            <p>• <strong>Nív 11 - Empolgação Máxima:</strong> Dados aumentam (2d4 até 3d6).</p>
+            <p>• <strong>Nív 20 - Lutador Superior:</strong> +1 dado de dano, ataque livre por 2 PE e começa com +1 Nível de Empolgação.</p>
+        </div>
+    </div>
+
+    <button type="button" class="btn-escolher" onclick="selecionarClasse('Lutador')">ESCOLHER CLASSE</button>
+</div>
+
+        <div class="class-card">
+    <div class="class-header">
+        <h3>Especialista em Combate</h3>
+    </div>
+    
+    <div class="class-content">
+        <p class="class-desc">
+            O Especialista em Combate trata o combate como uma arte a se desenvolver e dominar, focando em um manuseio complexo de armas, versatilidade, estratégia e domínio do campo de batalha.
+            <br><em>Exemplos: Kento Nanami, Yuta Okkotsu e Atsuya Kusakabe.</em>
+        </p>
+
+        <div class="class-stats">
+            <p><strong>PV Inicial:</strong> <span class="red-text">12 + CON</span></p>
+            <p><strong>PV Subsequente:</strong> <span class="red-text">1d10 (ou 6) + CON</span></p>
+            <p><strong>Energia (PE):</strong> <span class="red-text">4 por nível</span></p>
+            <p><strong>Atributos Chave:</strong> Força, Destreza ou Sabedoria (para CD)</p>
+            <p><strong>Multiclasse:</strong> FOR ou DES 16</p>
+        </div>
+
+        <div class="class-section">
+            <h4>TREINAMENTOS</h4>
+            <ul>
+                <li><strong>Armas/Escudos:</strong> Todas as armas e escudos.</li>
+                <li><strong>Resistência:</strong> Fortitude ou Reflexos.</li>
+                <li><strong>Perícias:</strong> Duas de Ofício, Atletismo ou Acrobacia e três outras quaisquer.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>REPERTÓRIO DO ESPECIALISTA (Nível 1)</h4>
+            <p>Escolha um estilo inicial. Você recebe um novo estilo no nível 6 e outro no 12.</p>
+            <p>• <strong>Estilo Defensivo:</strong> Sua Defesa aumenta em 2 e, nos níveis 4, 8, 12 e 16 aumenta em +1.</p>
+            <p>• <strong>Estilo do Arremessador:</strong> Pode sacar arma de arremesso como parte do ataque. +2 no dano (aumenta +1 nos níveis 4, 8, 12 e 16).</p>
+            <p>• <strong>Estilo do Duelista:</strong> Uma arma em uma mão e outra livre: +1 acerto e +2 dano. Dano aumenta +1 nos nív 4, 8, 12, 16. Acerto aumenta +1 nos nív 8 e 16.</p>
+            <p>• <strong>Estilo do Interceptador:</strong> Reação para reduzir dano em aliado dentro do alcance em 1d10 + MOD (FOR, DES ou SAB). Aumenta 1 dado nos nív 4, 8, 12, 16.</p>
+            <p>• <strong>Estilo do Protetor:</strong> Reação para impor desvantagem em ataque contra alvo a 1,5m. Pode conceder vantagem no Teste de Resistência de aliado a 1,5m.</p>
+            <p>• <strong>Estilo Distante:</strong> +1 acerto e +2 dano com armas a distância. Dano aumenta +1 nos nív 4, 8, 12, 16. Acerto aumenta +1 nos nív 8 e 16.</p>
+            <p>• <strong>Estilo Duplo:</strong> Com duas armas, adiciona bônus de atributo no dano da segunda arma. +1 no dano (aumenta +1 nos nív 4, 8, 12, 16).</p>
+            <p>• <strong>Estilo Massivo:</strong> Armas de duas mãos/pesadas: rola novamente 1 ou 2 no dado de dano. +1 no dano (aumenta +1 nos nív 4, 8, 12, 16).</p>
+        </div>
+
+        <div class="class-section">
+            <h4>ARTES DO COMBATE (Nível 1)</h4>
+            <p><strong>Pontos de Preparo:</strong> Nível + Mod. Sabedoria.</p>
+            <p>• <strong>Arremesso Ágil:</strong> Ao fazer ataque corpo-a-corpo, gaste 1 ponto para realizar outro ataque com arma de arremesso contra 2º alvo (ação livre).</p>
+            <p>• <strong>Distração Letal:</strong> Gaste 1 ponto no ataque. Se acertar, reduz Defesa do alvo em metade da SAB por uma rodada.</p>
+            <p>• <strong>Execução Silenciosa:</strong> No ataque em criatura desprevenida, gaste 1 ponto para +1d6 de dano (aumenta +1d6 a cada +2 de SAB).</p>
+            <p>• <strong>Golpe Descendente:</strong> Gaste 1 ponto no ataque corpo-a-corpo. Se acertar, sua Defesa aumenta em metade da SAB até seu próximo turno.</p>
+            <p>• <strong>Investida Imediata:</strong> Na ação de ataque, gaste 2 pontos para mover-se (SAB x 1,5m) até o alvo sem causar ataques de oportunidade e atacar.</p>
+            <p><em>Recuperação: 1 ponto ao eliminar inimigo; 2 pontos com ação comum analisando o campo. Descanso curto recupera metade; Longo recupera tudo.</em></p>
+        </div>
+
+        <div class="class-section">
+            <h4>GOLPE ESPECIAL (Nível 4)</h4>
+            <p>Monte seu ataque especial combinando as propriedades abaixo:</p>
+            <table class="stats-table">
+                <thead>
+                    <tr><th>Propriedade</th><th>Custo</th><th>Efeito</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Amplo</td><td>+2 PE</td><td>Atinge uma criatura a mais.</td></tr>
+                    <tr><td>Atroz</td><td>+1 PE</td><td>+1 dado de dano adicional.</td></tr>
+                    <tr><td>Impactante</td><td>+1 PE</td><td>Empurra 1,5m para cada 15 de dano.</td></tr>
+                    <tr><td>Letal</td><td>+2 PE</td><td>-1 na Margem de Crítico.</td></tr>
+                    <tr><td>Longo</td><td>+1 PE</td><td>+1,5m (C-C) ou +9m (Distância).</td></tr>
+                    <tr><td>Penetrante</td><td>+2 PE</td><td>Ignora RD igual a metade do nível.</td></tr>
+                    <tr><td>Preciso</td><td>+1/+2 PE</td><td>Vantagem no ataque.</td></tr>
+                    <tr><td>Sanguinário</td><td>+2 PE</td><td>Causa sangramento (CD Especialização).</td></tr>
+                    <tr><td>Lento</td><td>-2 PE</td><td>Usado como ação completa.</td></tr>
+                    <tr><td>Sacrifício</td><td>-1 PE</td><td>Recebe 15 de dano ao efetuar.</td></tr>
+                    <tr><td>Desfocado</td><td>-1 PE</td><td>Penalidade de -4 no acerto (máx 3x).</td></tr>
+                </tbody>
+            </table>
+            <p><em>Custo mínimo total: 1 PE.</em></p>
+        </div>
+
+        <div class="class-section">
+            <h4>OUTRAS HABILIDADES</h4>
+            <p>• <strong>Nível 4 - Implemento Marcial:</strong> +2 na CD de Habilidades, Feitiços e Aptidões. (+1 nos nív 8 e 16).</p>
+            <p>• <strong>Nível 6 - Renovação pelo Sangue:</strong> Recupera 1 PE ao dar crítico ou reduzir inimigo a 0 PV.</p>
+            <p>• <strong>Nível 9 - Teste de Resistência Mestre:</strong> Treinado em um 2º teste e Mestre no inicial.</p>
+            <p>• <strong>Nível 20 - Autossuficiente:</strong> Recebe 3 PE temporários para Golpes Especiais (pode ser 6 uma vez por cena). Todos ataques causam +1 dado de dano.</p>
+        </div>
+    </div>
+
+   <button type="button" class="btn-escolher" onclick="selecionarClasse('Especialista em Combate')">ESCOLHER CLASSE</button>
+</div>
+
+<div class="class-card">
+    <div class="class-header">
+        <h3>Especialista em Técnica</h3>
+    </div>
+    
+    <div class="class-content">
+        <p class="class-desc">
+            Dedica-se a maximizar o potencial da energia amaldiçoada e da sua técnica. Capaz de alterar os fundamentos do jujutsu, sendo estratégico e imprevisível.
+            <br><em>Exemplos: Satoru Gojo e Ryomen Sukuna.</em>
+        </p>
+
+        <div class="class-stats">
+            <p><strong>PV Inicial:</strong> <span class="red-text">10 + CON</span></p>
+            <p><strong>PV Subsequente:</strong> <span class="red-text">1d8 (ou 5) + CON</span></p>
+            <p><strong>Energia (PE):</strong> <span class="red-text">6 por nível + Mod. de Técnica</span></p>
+            <p><strong>Atributos Chave:</strong> Inteligência ou Sabedoria</p>
+            <p><strong>Multiclasse:</strong> INT ou SAB 16</p>
+        </div>
+
+        <div class="class-section">
+            <h4>TREINAMENTOS</h4>
+            <ul>
+                <li><strong>Armas:</strong> Simples e à Distância.</li>
+                <li><strong>Resistência:</strong> Astúcia ou Vontade.</li>
+                <li><strong>Perícias:</strong> Duas de Ofício, Feitiçaria ou Ocultismo e duas outras quaisquer.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>DOMÍNIO DOS FUNDAMENTOS (Nível 1)</h4>
+            <p>Aprende duas Mudanças de Fundamento no nível 1 e uma adicional no nível 12:</p>
+            <ul>
+                <li><strong>Feitiço Cruel:</strong> Gaste 1 PE para +2 na CD ou 2 PE para +4 na CD.</li>
+                <li><strong>Feitiço Distante:</strong> Gaste 2 PE para dobrar o alcance (ou dar 9m se for corpo-a-corpo).</li>
+                <li><strong>Feitiço Duplicado:</strong> Gaste o dobro do nível do feitiço em PE para adicionar um segundo alvo (1x por rodada).</li>
+                <li><strong>Feitiço Expansivo:</strong> Gaste 3 PE para aumentar a área do feitiço em 1,5x.</li>
+                <li><strong>Feitiço Potente:</strong> Gaste 2 PE para rerolar dados de dano iguais ao seu Mod. de INT/SAB.</li>
+                <li><strong>Feitiço Preciso:</strong> Gaste 1 PE para +2 de acerto ou 2 PE para +4 de acerto.</li>
+                <li><strong>Feitiço Rápido (Nível 6):</strong> Gaste o dobro do nível do feitiço em PE para reduzir o tempo de ação (Completa > Comum > Bônus).</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>CONJURAÇÃO APRIMORADA (Nível 1)</h4>
+            <p>Você recebe novos feitiços em <strong>todos os níveis</strong>. Feitiços de dano recebem bônus conforme a tabela:</p>
+            <table class="stats-table">
+                <thead>
+                    <tr><th>Nível do Feitiço</th><th>Bônus de Dano</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Nível 1 e 2</td><td>Modificador de Atributo</td></tr>
+                    <tr><td>Nível 3</td><td>2x Modificador de Atributo</td></tr>
+                    <tr><td>Nível 4</td><td>2x Mod. + Nível de Personagem</td></tr>
+                    <tr><td>Nível 5</td><td>2x Mod. + 2x Nível de Personagem</td></tr>
+                    <tr><td>Técnica Máxima</td><td>3x Mod. + 3x Nível de Personagem</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="class-section">
+            <h4>ADIANTAR A EVOLUÇÃO (Nível 4)</h4>
+            <p>Você acessa feitiços de nível superior mais cedo:</p>
+            <ul>
+                <li><strong>Nível 4:</strong> Acesso a Feitiços Nível 2.</li>
+                <li><strong>Nível 7:</strong> Acesso a Feitiços Nível 3.</li>
+                <li><strong>Nível 11:</strong> Acesso a Feitiços Nível 4.</li>
+                <li><strong>Nível 15:</strong> Acesso a Feitiços Nível 5.</li>
+            </ul>
+        </div>
+        <div class="class-section">
+    <h4>HABILIDADES LETAIS</h4>
+    <p>• <strong>Nível 9 - Teste de Resistência Mestre:</strong> Treinado em um 2º teste e Mestre no inicial.</p>
+</div>
+
+<div class="class-section">
+    <h4>FOCO AMALDIÇOADO (Nível 10)</h4>
+
+            <p>Escolha um dos três focos de desenvolvimento:</p>
+            <p>• <strong>Destruição:</strong> +1 de dano para cada dado rolado em feitiços. Soma bônus de treinamento no dano total de feitiços/aptidões.</p>
+            <p>• <strong>Economia:</strong> Custo de feitiços reduzido em 2 (Nível 1 pode custar 0). Soma bônus de treinamento no máximo de PE.</p>
+            <p>• <strong>Refino:</strong> Ganha uma Aptidão ou Feitiço adicional. Soma metade do bônus de treinamento na CD e acerto amaldiçoado.</p>
+        </div>
+        <div class="class-section">
+            <h4>HABILIDADE FINAL</h4>
+            <p>• <strong>Nível 20 - O Honrado:</strong> Custo de feitiços níveis 1, 2 e 3 reduzido pela metade. CD de feitiços e aptidões aumenta em +5 e recebe +5 em rolagens de ataque amaldiçoado.</p>
+        </div>
+    </div>
+
+   <button type="button" class="btn-escolher" onclick="selecionarClasse('Especialista em Técnica')">ESCOLHER CLASSE</button>
+</div>
+
+<div class="class-card">
+    <div class="class-header">
+        <h3>Controlador</h3>
+    </div>
+    
+    <div class="class-content">
+        <p class="class-desc">
+            O Controlador é uma especialização cujo propósito é controlar invocações, desenvolvendo-as e conseguindo extrair todo o potencial de shikigamis ou corpos amaldiçoados, com habilidades especiais e únicas para eles. Conseguem também focar em certos caminhos diferentes, mas que dependem de ter suas invocações por perto, como atacar junto delas, ser protegido por elas ou as proteger para que durem mais em combate. São dominantes, criativos e impactantes no campo de batalha, controlando-o.
+            <br><em>Exemplos: Megumi Fushiguro, Kokichi Muta e Suguru Geto.</em>
+        </p>
+
+        <div class="class-stats">
+            <p><strong>PV Inicial:</strong> <span class="red-text">10 + Modificador de Constituição</span></p>
+            <p><strong>PV Subsequente:</strong> <span class="red-text">1d8 (ou 5) + Modificador de Constituição</span></p>
+            <p><strong>Energia (PE):</strong> <span class="red-text">5 por nível</span></p>
+            <p><strong>Bônus de Energia:</strong> <span class="red-text">Soma Modificador de Atributo de Técnica</span></p>
+            <p><strong>Atributos Chave:</strong> Presença ou Sabedoria (para calcular a CD)</p>
+            <p><strong>Multiclasse:</strong> Presença ou Sabedoria 16</p>
+        </div>
+
+        <div class="class-section">
+            <h4>TREINAMENTOS</h4>
+            <ul>
+                <li><strong>Armas/Escudos:</strong> Armas Simples e Armas a Distância.</li>
+                <li><strong>Resistência:</strong> Astúcia ou Vontade.</li>
+                <li><strong>Perícias:</strong> Ofício, Percepção, Persuasão e outras duas perícias quaisquer.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>TREINAMENTO EM CONTROLE (Nível 1)</h4>
+            <p>Você é treinado para controlar Invocações com maior eficiência:</p>
+            <ul>
+                <li><strong>Novas Invocações:</strong> Recebe duas iniciais. Ganha uma adicional nos níveis 3, 6, 9, 10, 12, 15 e 18.</li>
+                <li><strong>Limite Ativo:</strong> A quantidade de Invocações que você pode manter ativas em campo aumenta em 1.</li>
+                <li><strong>Comandos:</strong> Nos níveis 6, 12 e 18 a quantidade de comandos que você realiza com uma Ação Comum e Bônus aumenta em um.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>MELHORIA DE CONTROLADOR</h4>
+            <p>A melhoria é aplicada em uma quantidade de Invocações igual ao seu Bônus de Treinamento. Escolha uma opção:</p>
+            <ul>
+                <li><strong>Agressividade:</strong> +1d6 dano adicional. No nív 4 (+3 no dano); nív 8 (dado vira 1d8); nív 12 (+6 no dano); nív 16 (1d10); nív 18 (1d12).</li>
+                <li><strong>Resistência:</strong> +2 Defesa. No nív 4 (2 RD contra tudo); nív 8 (+1 Defesa); nív 12 (+3 RD); nív 16 (+1 Defesa); nív 18 (+2 Defesa).</li>
+                <li><strong>Mobilidade:</strong> Deslocamento aumenta em 1,5m. Nos níveis 4, 8, 12, 16 e 18 aumenta em +1,5m.</li>
+                <li><strong>Precisão:</strong> +2 em Ataque ou CD. No nív 4 (+2 Atk ou CD); nív 8 (+1 Atk/CD e pode rerolar ataque ou TR inimigo 1x/cena); nív 12 (rerolagem 1x/rodada); nív 16 (+2 Atk/CD); nív 18 (+2 Atk/CD).</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>CONTROLE APRIMORADO (Nível 4)</h4>
+            <p>Invocações recebem bônus em testes igual a +2, aumentando em +1 para cada grau acima do quarto (+3 p/ 3º, +4 p/ 2º, etc). Pode usar Aptidões de Controle e Leitura a partir das Invocações (exceto Punho Divergente e Emoção da Pétala Decadente).</p>
+        </div>
+
+        <div class="class-section">
+            <h4>INVOCAÇÃO ÁS</h4>
+            <p>Use um efeito como <strong>Ação Livre</strong> (1x por descanso curto ou longo):</p>
+            <ul>
+                <li><strong>Cura:</strong> 2d10 + MOD (SAB ou PRE). Nos nív 5, 9, 13 e 17 aumenta em +1d10.</li>
+                <li><strong>Dano:</strong> 2d8 + MOD (6 metros). Nív 5 (4d8); nív 9 (5d10); nív 13 (8d8); nív 17 (8d10).</li>
+                <li><strong>Cegueira:</strong> Área de 9m, TR Fortitude ou Cegueira por 2 turnos. Área aumenta +3m nos nív 5, 9, 13 e 17.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>APOGEU (Nível 6)</h4>
+            <p>• <strong>Controle Concentrado:</strong> Pode invocar apenas uma unidade como <strong>Ação Livre</strong>.</p>
+            <p>• <strong>Controle Disperso:</strong> +1 no limite de ativas e +1 invocada por ação. Acesso a <em>Criar Horda</em>. No nív 12, +1 no limite e pode criar duas hordas em uma mesma ação.</p>
+            <p>• <strong>Controle Sintonizado:</strong> Se a invocação atacar, pague 2 PE para atacar o mesmo alvo (Ação Livre). Recebe +1 em acerto e dano para cada invocação em campo.</p>
+        </div>
+
+        <div class="class-section">
+            <h4>CONCENTRAR PODER</h4>
+            <p>Afeta "Invocações Marcadas" (metade do seu Bônus de Treinamento). Se estiver com apenas uma ativa:</p>
+            <ul>
+                <li><strong>Inicial:</strong> Dano/Cura +1 nível, +5 PV, +1 Defesa.</li>
+                <li><strong>Nível 6:</strong> Dano/Cura +2 níveis e +3 total, +10 PV, +2 Defesa/TR.</li>
+                <li><strong>Nível 12:</strong> Dano/Cura +3 níveis e +5 total, +20 PV, +3 Defesa/TR.</li>
+                <li><strong>Nível 18:</strong> Dano/Cura +5 níveis e +10 total, +30 PV, +5 Defesa/TR.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>HABILIDADES FINAIS</h4>
+            <p>• <strong>Nível 9 - Resistência Mestre:</strong> Treinado em um 2º teste e Mestre no inicial.</p>
+            <p>• <strong>Nível 10 - Reserva:</strong> 1x/descanso curto, invoca duas com custo/2 ou uma sem custo. Criar Horda custa metade.</p>
+            <p>• <strong>Nível 20 - Ápice:</strong> Invocações ganham 2 ações extras grátis. Invocar vira Ação Livre. Inimigos têm desvantagem para te atacar se você tiver invocações.</p>
+        </div>
+    </div>
+
+    <button type="button" class="btn-escolher" onclick="selecionarClasse('Controlador')">ESCOLHER CLASSE</button>
+</div>
+
+<div class="class-card">
+    <div class="class-header">
+        <h3>Suporte</h3>
+    </div>
+    
+    <div class="class-content">
+        <p class="class-desc">
+            Focado em auxiliar aliados, curando ou ampliando capacidades. Mestres da energia reversa, possuem visão ampla e objetiva, administrando o campo de batalha de forma atenciosa e protetora.
+            <br><em>Exemplos: Shoko Ieiri, Hana Kurusu e Kirara Hoshi.</em>
+        </p>
+
+        <div class="class-stats">
+            <p><strong>PV Inicial:</strong> <span class="red-text">10 + Modificador de Constituição</span></p>
+            <p><strong>PV Subsequente:</strong> <span class="red-text">1d8 (ou 5) + Modificador de Constituição</span></p>
+            <p><strong>Energia (PE):</strong> <span class="red-text">5 por nível</span></p>
+            <p><strong>Bônus de Energia:</strong> <span class="red-text">Soma Modificador de Atributo de Técnica</span></p>
+            <p><strong>Atributos Chave:</strong> Presença ou Sabedoria (para calcular a CD)</p>
+            <p><strong>Multiclasse:</strong> Presença ou Sabedoria 16</p>
+        </div>
+
+        <div class="class-section">
+            <h4>TREINAMENTOS</h4>
+            <ul>
+                <li><strong>Armas/Escudos:</strong> Armas Simples e Escudos.</li>
+                <li><strong>Resistência:</strong> Astúcia ou Vontade.</li>
+                <li><strong>Perícias:</strong> Duas de Ofício, Medicina, Prestidigitação e outras três quaisquer.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>SUPORTE EM COMBATE (Nível 1)</h4>
+            <ul>
+                <li><strong>Apoiar:</strong> Pode usar a ação Apoiar como uma <strong>Ação Bônus</strong>.</li>
+                <li><strong>Cura de Combate:</strong> Como ação bônus, cura 2d6 + MOD (PRE/SAB) por toque. Usos: igual ao MOD por descanso curto/longo.
+                    <br><em>Evolução:</em> 2d12 (Nív 4); 3d12 (Nív 8); 6d8 (Nív 12); 6d10 (Nív 16).
+                </li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>PRESENÇA INSPIRADORA (Nível 3)</h4>
+            <p>Pague 2 PE para inspirar aliados em 9m por uma cena (+1 em perícias). Pode gastar PE adicional (até metade do MOD) para aumentar o bônus em +1 para cada PE gasto.</p>
+        </div>
+
+        <div class="class-section">
+            <h4>VERSATILIDADE (Nível 5)</h4>
+            <p>Pague 1 PE para ser considerado treinado em uma perícia (Usos: igual ao MOD de Sabedoria por descanso).</p>
+        </div>
+
+        <div class="class-section">
+            <h4>ENERGIA REVERSA</h4>
+            <p>• <strong>Nível 6:</strong> Recebe a aptidão amaldiçoada <em>Energia Reversa</em>.</p>
+            <p>• <strong>Nível 8:</strong> Recebe a aptidão amaldiçoada <em>Liberação de Energia Reversa</em>.</p>
+        </div>
+
+        <div class="class-section">
+            <h4>APOIOS AVANÇADOS</h4>
+            <p>Escolha um apoio para aplicar ao usar a ação Apoiar (Ganha novos nos níveis 6 e 12):</p>
+            <ul>
+                <li><strong>Apoio Curativo:</strong> Gasta uma carga de Suporte em Combate para curar o aliado como parte da ação.</li>
+                <li><strong>Apoio Defensivo:</strong> Aumenta a Defesa do aliado em metade do seu Bônus de Treinamento até o próximo turno.</li>
+                <li><strong>Apoio Focado:</strong> Além da vantagem, concede bônus no teste igual a metade do MOD de Presença ou Sabedoria.</li>
+                <li><strong>Apoio Ofensivo:</strong> Gasta 2 PE para realizar um ataque como parte da ação.</li>
+                <li><strong>Apoio Estratégico (Nív 6):</strong> Aumenta a CD do próximo teste do aliado em metade do seu Bônus de Treinamento.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>HABILIDADES AVANÇADAS</h4>
+            <p>• <strong>Nível 9 - Resistência Mestre:</strong> Treinado em um 2º teste e Mestre no inicial.</p>
+            <p>• <strong>Nível 10 - Medicina Infalível:</strong> Pode maximizar dados de cura (Usos: metade do nível + bônus de treinamento). Soma bônus de treinamento no total de toda cura.</p>
+            <p>• <strong>Nível 20 - Suporte Absoluto:</strong> Apoiar vira <strong>Ação Livre</strong> (1x/rodada). Usos de Suporte em Combate dobram e soma o MOD da CD em toda cura realizada.</p>
+        </div>
+    </div>
+
+    <button type="button" class="btn-escolher" onclick="selecionarClasse('Suporte')">ESCOLHER CLASSE</button>
+</div>
+
+<div class="class-card">
+    <div class="class-header">
+        <h3>Restringido</h3>
+    </div>
+    
+    <div class="class-content">
+        <p class="class-desc">
+            Único tipo de feiticeiro que não possui energia amaldiçoada. Em troca, recebem um físico sobre-humano e desenvolvimento absurdo. Mestres em artes marciais e armas, são a personificação da rejeição ao destino.
+            <br><em>Exemplos: Toji Fushiguro e Maki Zenin.</em>
+        </p>
+
+        <div class="class-stats">
+            <p><strong>PV Inicial:</strong> <span class="red-text">16 + Modificador de Constituição</span></p>
+            <p><strong>PV Subsequente:</strong> <span class="red-text">1d12 (ou 7) + Modificador de Constituição</span></p>
+            <p><strong>Estamina:</strong> <span class="red-text">Inicia com 4. Ganha +4 por nível.</span></p>
+            <p><strong>Atributos Chave:</strong> Qualquer atributo (para CD das habilidades)</p>
+            <p><strong>Multiclasse:</strong> Proibido (Limitado à Origem).</p>
+        </div>
+
+        <div class="class-section">
+            <h4>TREINAMENTOS</h4>
+            <ul>
+                <li><strong>Armas/Escudos:</strong> Todas as armas e escudos.</li>
+                <li><strong>Resistência:</strong> Fortitude e Reflexos.</li>
+                <li><strong>Perícias:</strong> Uma de Ofício e outras quatro quaisquer (exceto Feitiçaria).</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>RESTRITO PELOS CÉUS (Nível 1)</h4>
+            <p>• <strong>Defesa:</strong> Adiciona MOD de Força ou Constituição na Defesa (limitado pelo nível).</p>
+            <p>• <strong>Equipamento:</strong> Inicia com ferramenta amaldiçoada (4º grau) e meio de ver maldições.</p>
+            <p>• <strong>Dádivas:</strong> Recebe uma <em>Dádiva do Céu</em> no nível 4 e a cada 4 níveis seguintes.</p>
+        </div>
+
+        <div class="class-section">
+            <h4>ATAQUE FURTIVO</h4>
+            <p>Adiciona dano extra contra alvos desprevenidos, surpresos ou flanqueados (1x/turno):</p>
+            <p><strong>Dano:</strong> 1d8 (Nív 2); 2d8 (Nív 3); 3d8 (Nív 6); 4d8 (Nív 9); 5d8 (Nív 12); 6d8 (Nív 15).</p>
+        </div>
+
+        <div class="class-section">
+            <h4>ARSENAL AMALDIÇOADO (Nível 2)</h4>
+            <table class="stats-table">
+                <tr><th>Treino</th><th>Ferramentas Disponíveis</th></tr>
+                <tr><td>+2</td><td>1x (3º Grau) e 2x (4º Grau)</td></tr>
+                <tr><td>+3</td><td>1x (2º Grau) e 3x (3º Grau)</td></tr>
+                <tr><td>+4</td><td>2x (1º Grau) e 2x (2º Grau)</td></tr>
+                <tr><td>+5</td><td>1x (Especial) e 3x (1º Grau)</td></tr>
+                <tr><td>+6</td><td>2x (Especial) e 2x (1º Grau)</td></tr>
+            </table>
+            <p><em>Pode alternar livremente entre armas do arsenal durante o turno (inclusive na ação de ataque).</em></p>
+        </div>
+
+        <div class="class-section">
+            <h4>ESTILO MARCIAL (Técnicas)</h4>
+            <p>Cria técnicas baseadas no físico e armas (Inicia com 2 técnicas). Ganha +1 nos níveis ímpares.</p>
+            <ul>
+                <li><strong>Nível 1 (Custo 2 Estamina):</strong> Acesso inicial.</li>
+                <li><strong>Nível 2 (Custo 5 Estamina):</strong> No nível 5 de classe.</li>
+                <li><strong>Nível 3 (Custo 8 Estamina):</strong> No nível 9 de classe.</li>
+                <li><strong>Nível 4 (Custo 12 Estamina):</strong> No nível 15 de classe.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>DÁDIVAS DO CÉU (Escolhas)</h4>
+            <ul>
+                <li><strong>Agilidade Exímia:</strong> +2 em Destreza, +3m movimento, ignora terreno difícil.</li>
+                <li><strong>Físico Robusto:</strong> RD igual a metade do nível, +2 em testes de Constituição.</li>
+                <li><strong>Força Devastadora:</strong> +3m em saltos, +4,5m no Empurrar, +2 em testes de Força.</li>
+                <li><strong>Indulgente a Feitiçaria:</strong> RD contra feitiços (metade do nível), bônus em TRs de Vontade.</li>
+                <li><strong>Mente Afiada:</strong> +2 Perícias, Mestre em uma, +2 em testes de Inteligência.</li>
+                <li><strong>Percepção Aguçada:</strong> Atenção (+metade do nível), +3 Percepção, +2 em testes de Sabedoria.</li>
+                <li><strong>Reposição Sanguinária:</strong> Recupera 3 Estamina quando um inimigo ferido por você morre.</li>
+                <li><strong>Vigor Infindável:</strong> PV aumenta em +nível, +1 Estamina máxima a cada 2 níveis.</li>
+            </ul>
+        </div>
+
+        <div class="class-section">
+            <h4>PROGRESSÃO SOBRE-HUMANA</h4>
+            <p>• <strong>Nív 2 - Versatilidade:</strong> +1 em perícias (+2 no nív 10).</p>
+            <p>• <strong>Nív 3 - Esquiva:</strong> +1 Defesa e Reflexos (+1 no nív 9 e 16). Crítico em reflexos reduz em metade do treino (nív 10).</p>
+            <p>• <strong>Nív 4 - Implemento:</strong> +2 na CD das técnicas (+1 no nív 8 e 16).</p>
+            <p>• <strong>Nív 10 - Restrição Definitiva:</strong> Vantagem em Furtividade contra usuários de energia; Vê o traçado da alma; Armas causam +1 nível de dano; +3m movimento; Imune a Expansões de Domínio.</p>
+            <p>• <strong>Nív 20 - Libertação do Destino:</strong> Resistência a danos físicos (corte/perf/imp) + 1 tipo extra. +5 no ataque e soma metade do nível no dano total.</p>
+        </div>
+    </div>
+
+    <button type="button" class="btn-escolher" onclick="selecionarClasse('Restringido')">ESCOLHER CLASSE</button>
+    
+    
+    </div>
+
+</section>
+
+            <section class="form-step hidden" id="step-4">
+    <h2 class="section-title">TÉCNICA AMALDIÇOADA</h2>
+    
+    <div class="tecnicas-grid">
+        
+        <div class="tecnica-card" id="card-ilimitado">
+            <div class="tecnica-img-container">
+                <img src="img/ilimitado.jpg" alt="Ilimitado" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech controle">Controle</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>ILIMITADO</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Manipulação do infinito para atrair, repelir ou parar o espaço. Requer precisão absoluta.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Ilimitado', 'ilimitado')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card" id="card-santuario">
+            <div class="tecnica-img-container">
+                <img src="img/santuario.jpg" alt="Santuário" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech ofensivo">Ofensivo</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>SANTUÁRIO</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Cortes invisíveis (Clivar e Desmantelar) que fatiam alvos e objetos com precisão brutal.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Santuário', 'santuario')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card" id="card-sangue">
+            <div class="tecnica-img-container">
+                <img src="img/sangue.jpg" alt="Sangue" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech suporte">Suporte</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>MANIPULAÇÃO DE SANGUE</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Controla o próprio sangue para endurecer membros ou disparar projéteis perfurantes.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Manipulação de Sangue', 'sangue')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card" id="card-copia">
+            <div class="tecnica-img-container">
+                <img src="img/copia.jpg" alt="Cópia" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech complexo">Complexo</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>CÓPIA</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Permite mimetizar e utilizar técnicas amaldiçoadas de outros feiticeiros temporariamente.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Cópia', 'copia')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card" id="card-dezsombras">
+            <div class="tecnica-img-container">
+                <img src="img/dezsombras.jpg" alt="Dez Sombras" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech controle">Controle</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>DEZ SOMBRAS</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Invocação de dez Shikigamis poderosos através das sombras do usuário.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Dez Sombras', 'dezsombras')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card" id="card-bombaye">
+            <div class="tecnica-img-container">
+                <img src="img/bombaye.jpg" alt="Bom Ba Ye" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech ofensivo">Ofensivo</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>BOM BA YE</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Ganha massa virtual infinita, desferindo golpes que ignoram a resistência física comum.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Bom Ba Ye', 'bombaye')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card" id="card-projecao">
+            <div class="tecnica-img-container">
+                <img src="img/projecao.jpg" alt="Projeção" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech complexo">Complexo</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>PROJEÇÃO</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Divide o movimento em 24 quadros por segundo para atingir velocidades surreais.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Projeção', 'projecao')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card" id="card-falaamaldiçoada">
+            <div class="tecnica-img-container">
+                <img src="img/falaamaldiçoada.jpg" alt="Fala" class="tecnica-img">
+                <div class="tecnicas-tags"><span class="tag-tech suporte">Suporte</span></div>
+                <span class="selection-mark">SELECIONADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>FALA AMALDIÇOADA</h3>
+                <div class="tecnica-legenda scroll-internal">
+                    <p>Impele ordens diretamente na alma do alvo através da fala reforçada com energia.</p>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnica('Fala Amaldiçoada', 'falaamaldiçoada')">SELECIONAR</button>
+            </div>
+        </div>
+
+        <div class="tecnica-card custom-tech" id="card-custom">
+            <div class="tecnica-img-container" style="background: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+                <span style="color: #f02020; font-weight: bold;">TÉCNICA ORIGINAL</span>
+                <span class="selection-mark">MANIFESTADA</span>
+            </div>
+            <div class="tecnica-info">
+                <h3>PERSONALIZADA</h3>
+                <div class="scroll-internal" style="height: 100px; padding: 5px;">
+                    <input type="text" id="input-tecnica-custom" placeholder="Nome..." class="custom-input">
+                    <textarea id="desc-tecnica-custom" placeholder="Descrição..." class="custom-input"></textarea>
+                </div>
+                <button type="button" class="btn-select-tecnica" onclick="selecionarTecnicaCustom()">MANIFESTAR</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="botoes-nav">
+        <button type="button" class="btn-back" onclick="nextStep(3)">Voltar</button>
+        <button type="button" class="btn-primary" id="btn-tecnica-next" onclick="nextStep(5)" disabled>Próximo &rarr;</button>
+    </div>
+</section>
+
+            <section class="form-step hidden" id="step-5">
+    <h2 class="section-title">IDENTIDADE JUJUTSU</h2>
+    <p class="section-subtitle">Um bom personagem é mais do que apenas números. Defina quem você é no mundo do Jujutsu.</p>
+
+    <div class="identity-container">
+        <div class="input-row">
+            <div class="input-group">
+                <label>Personagem</label>
+                <input type="text" id="nome-personagem" placeholder="Nome do feiticeiro...">
+            </div>
+            <div class="input-group">
+                <label>Jogador</label>
+                <input type="text" id="nome-jogador" placeholder="Seu nome...">
+            </div>
+        </div>
+
+        <div class="textarea-group">
+            <label>Aparência</label>
+            <textarea id="desc-aparencia" class="scroll-internal" placeholder="Nome, gênero, idade, descrição física..."></textarea>
+        </div>
+
+        <div class="textarea-group">
+            <label>Personalidade</label>
+            <textarea id="desc-personalidade" class="scroll-internal" placeholder="Traços marcantes, opiniões, ideais..."></textarea>
+        </div>
+
+        <div class="textarea-group">
+            <label>Histórico</label>
+            <textarea id="desc-historico" class="scroll-internal" placeholder="Infância, relação com a família, despertar da energia amaldiçoada..."></textarea>
+        </div>
+
+        <div class="textarea-group">
+            <label>Objetivo</label>
+            <textarea id="desc-objetivo" class="scroll-internal" placeholder="Por que você luta? Qual seu propósito como feiticeiro?"></textarea>
+        </div>
+    </div>
+
+    <div class="botoes-nav">
+        <button type="button" class="btn-back" onclick="nextStep(4)">Voltar</button>
+        <button type="button" class="btn-primary" onclick="finalizarFicha()">FINALIZAR REGISTRO</button>
+
+    </div>
+</section>
+
+        </div>
+    </div>
+
+    <script src="criacao.js"></script>
+</body>
+</html>
