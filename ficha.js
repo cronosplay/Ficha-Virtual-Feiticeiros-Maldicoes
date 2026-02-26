@@ -3852,6 +3852,592 @@ requisito: ""
     </div>
     `
 },
+{
+    nome: "Dividir Proporções",
+    categoria: "PROPORÇÃO",
+    nivel: 0,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "9 Metros",
+    alvo: "Uma Criatura",
+    duracao: "Um Ataque",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Bônus<br>
+    <strong>Alcance:</strong> 9 Metros<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Um Ataque<br><br>
+
+    Você divide uma criatura em dez linhas, revelando um ponto fraco
+    na proporção 7:3.
+
+    Enquanto a criatura estiver dividida, ao realizar um ataque,
+    você pode optar por sofrer -3 no teste de acerto para mirar
+    no ponto fraco.
+
+    Caso acerte, o golpe causa 1 nível de dano acima da arma utilizada.
+
+    Após atingir o ponto fraco, a divisão desaparece,
+    sendo necessário utilizar esta habilidade novamente
+    para recriar as linhas.
+    `
+},
+
+{
+    nome: "Precisão Amaldiçoada Bruta",
+    categoria: "PROPORÇÃO",
+    nivel: 0,
+    tipo: "Habilidade Passiva",
+    duracao: "Permanente",
+    desc: `
+    <strong>Habilidade Passiva</strong><br>
+    <strong>Duração:</strong> Permanente<br><br>
+
+    Sua energia amaldiçoada é precisa e bruta.
+    Seus ataques causam +2 de dano adicional.
+    `
+},
+
+{
+    nome: "Proporção Destruidora",
+    categoria: "PROPORÇÃO",
+    nivel: 1,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "12 Metros",
+    alvo: "Uma Criatura",
+    duracao: "Dois Ataques",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Bônus<br>
+    <strong>Alcance:</strong> 12 Metros<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Dois Ataques<br><br>
+
+    Você divide a criatura em dez linhas, revelando um ponto fraco
+    na proporção 7:3 para destruição precisa.
+
+    Enquanto a criatura estiver dividida, ao realizar um ataque,
+    você pode optar por sofrer -4 no teste de acerto para mirar
+    no ponto fraco.
+
+    Caso acerte, o golpe causa 2 níveis de dano acima da arma utilizada
+    e recebe +2 de dano adicional.
+
+    A divisão desaparece após os dois ataques ou ao atingir o ponto fraco.
+    `
+},
+
+{
+    nome: "Soco Proporcional",
+    categoria: "PROPORÇÃO",
+    nivel: 1,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Comum",
+    alcance: "Corpo a Corpo",
+    alvo: "Uma Criatura",
+    duracao: "Imediata",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Comum<br>
+    <strong>Alcance:</strong> Corpo a Corpo<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Imediata<br><br>
+
+    Você divide as proporções e concentra sua energia
+    para executar um golpe devastador.
+
+    Você pode utilizar uma técnica de Divisão de Proporções
+    de nível igual ou inferior ao desta técnica para este ataque.
+
+    O ataque segue todas as penalidades da técnica utilizada.
+    Caso acerte, além do dano normal, o alvo sofre redução de Defesa
+    por 1 rodada.
+    `
+    + criarEscalaPorNivel("Soco Proporcional", [
+        { nivel: 1, efeito: "Redução de Defesa -2 por 1 rodada" },
+        { nivel: 2, efeito: "Redução de Defesa -4 por 1 rodada" },
+        { nivel: 3, efeito: "Redução de Defesa -5 por 1 rodada" },
+        { nivel: 4, efeito: "Redução de Defesa -7 por 1 rodada" },
+        { nivel: 5, efeito: "Redução de Defesa -10 por 1 rodada" }
+    ])
+},
+
+{
+    nome: "Divisão Rápida",
+    categoria: "PROPORÇÃO",
+    nivel: 2,
+    tipo: "Habilidade Passiva",
+    duracao: "Permanente",
+    desc: `
+    <strong>Habilidade Passiva</strong><br>
+    <strong>Duração:</strong> Permanente<br><br>
+
+    Você se acostumou com sua técnica, conseguindo criar partições
+    e proporções rapidamente.
+
+    Um número de vezes por descanso longo igual à metade
+    do seu modificador de Técnica, você pode usar uma habilidade
+    de Proporção como Ação Livre.
+
+    Você recupera metade dos usos em um descanso curto
+    e todos em um descanso longo.
+
+    Seu máximo de Energia Amaldiçoada é reduzido em 4.
+    `
+},
+
+{
+    nome: "Resistência Bruta",
+    categoria: "PROPORÇÃO",
+    nivel: 2,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Reação",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Imediata",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Reação<br>
+    <strong>Alcance:</strong> Próprio<br>
+    <strong>Alvo:</strong> Próprio<br>
+    <strong>Duração:</strong> Imediata<br><br>
+
+    Ao ser alvo de um ataque, você pode utilizar sua reação
+    para aparar com sua arma.
+
+    Você recebe 15 de RD contra o ataque desencadeador.
+    `
+},
+
+{
+    nome: "Proporção Letal",
+    categoria: "PROPORÇÃO",
+    nivel: 2,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "12 Metros",
+    alvo: "Uma Criatura",
+    duracao: "Dois Ataques",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Bônus<br>
+    <strong>Alcance:</strong> 12 Metros<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Dois Ataques<br><br>
+
+    Você cria uma proporção letal em uma criatura,
+    revelando um ponto fraco na proporção 7:3
+    focado em eliminação rápida.
+
+    Enquanto a criatura estiver dividida,
+    você pode optar por sofrer -6 no teste de acerto
+    para mirar no ponto fraco.
+
+    Caso acerte, o golpe causa 3 níveis de dano acima
+    da arma utilizada e recebe +3 de dano adicional.
+
+    Ataques focados na proporção reduzem a margem
+    de crítico em 1.
+
+    Após acertar o ponto fraco duas vezes,
+    a divisão desaparece.
+    `
+},
+
+{
+    nome: "Esmagar",
+    categoria: "PROPORÇÃO",
+    nivel: 2,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Comum",
+    alcance: "18 Metros",
+    alvo: "Uma Criatura",
+    duracao: "Imediata",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Comum<br>
+    <strong>Alcance:</strong> 18 Metros<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Imediata<br><br>
+
+    Você avança em direção ao alvo, saltando e o atingindo com força esmagadora.
+
+    Realize um teste de Luta para acertar.
+    Caso acerte, o alvo deve realizar um teste de <strong>Fortitude</strong>.
+
+    Falha → recebe a condição <strong>Caído</strong>.<br>
+    Sucesso → evita a condição.
+
+    Se o alvo estiver sob efeito de uma Divisão de Proporção
+    e o valor do ataque for suficiente para ser um crítico,
+    ele recebe a condição <strong>Caído</strong> automaticamente,
+    sem direito a teste.
+    `
+    + criarEscalaPorNivel("Esmagar", [
+        { dano: "7d8", tipo: "Impacto" }
+    ])
+},
+
+{
+    nome: "Letalidade Proporcional",
+    categoria: "PROPORÇÃO",
+    nivel: 2,
+    tipo: "Habilidade Passiva",
+    duracao: "Permanente",
+    desc: `
+    <strong>Habilidade Passiva</strong><br>
+    <strong>Duração:</strong> Permanente<br><br>
+
+    Sua letalidade é proporcional à sua precisão e destruição,
+    permitindo superar defesas ao atingir o ponto exato.
+
+    Sempre que você acertar um golpe em uma Proporção,
+    ele causa +7 de dano adicional.
+
+    Seu máximo de Energia Amaldiçoada é reduzido em 4.
+    `
+},
+
+{
+    nome: "Proporção Específica",
+    categoria: "PROPORÇÃO",
+    nivel: 3,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "12 Metros",
+    alvo: "Um Membro",
+    duracao: "Um Ataque",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Bônus<br>
+    <strong>Alcance:</strong> 12 Metros<br>
+    <strong>Alvo:</strong> Um Membro<br>
+    <strong>Duração:</strong> Um Ataque<br><br>
+
+    Você cria uma proporção não na criatura inteira,
+    mas em um membro específico à sua escolha.
+
+    Enquanto o membro estiver dividido,
+    você pode optar por sofrer -8 no teste de acerto
+    para mirar no ponto fraco.
+
+    Caso acerte, o alvo deve realizar um teste de <strong>Fortitude</strong>.
+
+    Falha → o membro fica completamente inutilizado por 2 rodadas.<br>
+    Sucesso → evita a inutilização.
+
+    Após o ataque, a proporção é desfeita.
+    `
+    + criarEscalaPorNivel("Proporção Específica", [
+        { dano: "2d8", tipo: "Mesmo tipo da arma" }
+    ])
+},
+
+{
+    nome: "Resiliente como uma Parede",
+    categoria: "PROPORÇÃO",
+    nivel: 3,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Reação",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "Imediata",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Reação<br>
+    <strong>Alcance:</strong> Próprio<br>
+    <strong>Alvo:</strong> Próprio<br>
+    <strong>Duração:</strong> Imediata<br><br>
+
+    Ao ser alvo de um ataque, você reveste seu corpo
+    de forma localizada em resposta imediata.
+
+    Você recebe 21 de RD contra o dano do ataque desencadeador.
+    `
+},
+
+{
+    nome: "Proporção Aprimorada",
+    categoria: "PROPORÇÃO",
+    nivel: 3,
+    tipo: "Habilidade Passiva",
+    duracao: "Permanente",
+    desc: `
+    <strong>Habilidade Passiva</strong><br>
+    <strong>Duração:</strong> Permanente<br><br>
+
+    Um número de vezes igual à metade do seu bônus de treinamento,
+    quando você acertar um golpe crítico em um alvo afetado
+    por uma técnica de Proporção, ele deve realizar um
+    teste de <strong>Fortitude</strong>.
+
+    Falha → recebe a condição <strong>Sangramento Médio</strong>.
+
+    Seu máximo de Energia Amaldiçoada é reduzido em 6.
+    `
+},
+
+{
+    nome: "Colapso",
+    categoria: "PROPORÇÃO",
+    nivel: 3,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Comum",
+    alcance: "Corpo-a-Corpo",
+    alvo: "Área Esférica de 9 Metros",
+    duracao: "Imediata",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Comum<br>
+    <strong>Alcance:</strong> Corpo-a-Corpo<br>
+    <strong>Alvo:</strong> Área Esférica de 9 Metros<br>
+    <strong>Duração:</strong> Imediata<br><br>
+
+    Você divide toda uma área em proporções instáveis.
+    Ao atingir um ponto específico com um golpe corpo-a-corpo,
+    a estrutura proporcional entra em colapso.
+
+    Toda criatura dentro da área, exceto você,
+    deve realizar um teste de resistência de <strong>Reflexos</strong>.
+
+    Falha → sofre dano total e fica presa sob os detritos.<br>
+    Sucesso → sofre apenas metade do dano.
+
+    A área afetada se torna <strong>Terreno Difícil</strong>.
+    `
+    + criarEscalaPorNivel("Colapso", [
+        { dano: "5d12", tipo: "Impacto em Área" }
+    ])
+},
+
+{
+    nome: "Proporção Devastadora",
+    categoria: "PROPORÇÃO",
+    nivel: 3,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "12 Metros",
+    alvo: "Uma Criatura",
+    duracao: "Três Ataques ou 1 Rodada",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Bônus<br>
+    <strong>Alcance:</strong> 12 Metros<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Três Ataques ou 1 Rodada<br><br>
+
+    Você cria uma proporção devastadora com ponto fraco
+    na razão 7:3, focada em eliminação imediata.
+
+    Enquanto a criatura estiver dividida,
+    você pode optar por sofrer -10 no teste de acerto
+    para mirar no ponto fraco.
+
+    Caso acerte, o golpe causa 3 níveis de dano acima
+    da arma utilizada e recebe +4 de dano adicional.
+
+    Ataques focados reduzem a margem de crítico em 2.
+
+    Após atingir o ponto fraco três vezes ou após 1 rodada,
+    a proporção é desfeita.
+    `
+},
+
+{
+    nome: "Proporção Aniquiladora",
+    categoria: "PROPORÇÃO",
+    nivel: 4,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "12 Metros",
+    alvo: "Uma Criatura",
+    duracao: "Quatro Ataques ou 1 Rodada",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Bônus<br>
+    <strong>Alcance:</strong> 12 Metros<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Quatro Ataques ou 1 Rodada<br><br>
+
+    Você cria uma proporção aniquiladora com ponto fraco
+    na razão 7:3, focada em destruição absoluta.
+
+    Enquanto a criatura estiver dividida,
+    você pode optar por sofrer -12 no teste de acerto
+    para mirar no ponto fraco.
+
+    Caso acerte, o golpe causa 4 níveis de dano acima
+    da arma utilizada e recebe +5 de dano adicional.
+
+    Ataques focados reduzem a margem de crítico em 2.
+
+    Após atingir o ponto fraco quatro vezes
+    ou após 1 rodada, a proporção é desfeita.
+    `
+},
+
+{
+    nome: "Técnica Veloz",
+    categoria: "PROPORÇÃO",
+    nivel: 4,
+    tipo: "Habilidade Passiva",
+    duracao: "Permanente",
+    desc: `
+    <strong>Habilidade Passiva</strong><br>
+    <strong>Duração:</strong> Permanente<br><br>
+
+    Sua maestria com a técnica atinge a perfeição.
+    Você divide proporções de forma constante,
+    pressionando o inimigo sem descanso.
+
+    Uma vez por cena, você pode receber
+    uma Ação Bônus adicional,
+    desde que seja para utilizar
+    Dividir Proporções ou suas variantes.
+
+    Seu máximo de Energia Amaldiçoada é reduzido em 8.
+    `
+},
+
+{
+    nome: "Soco Devastador",
+    categoria: "PROPORÇÃO",
+    nivel: 4,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Completa",
+    alcance: "Corpo a Corpo",
+    alvo: "Uma Criatura",
+    duracao: "Imediata",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Completa<br>
+    <strong>Alcance:</strong> Corpo a Corpo<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Imediata<br><br>
+
+    Você libera uma força assustadora,
+    superando até mesmo feiticeiros do seu nível.
+
+    Realize um teste de Corpo-a-Corpo contra a Defesa do alvo.
+
+    Em sucesso, o alvo deve realizar um teste de <strong>Fortitude</strong>.
+
+    Falha → fica <strong>Fragilizado</strong> por 1 rodada.
+    `
+    + criarEscalaPorNivel("Soco Devastador", [
+        { dano: "12d10", tipo: "Impacto" }
+    ])
+},
+
+{
+    nome: "Morte por Proporção",
+    categoria: "PROPORÇÃO",
+    nivel: 5,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Bônus",
+    alcance: "18 Metros",
+    alvo: "Uma Criatura",
+    duracao: "Cinco Ataques ou 1 Rodada",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Bônus<br>
+    <strong>Alcance:</strong> 18 Metros<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Cinco Ataques ou 1 Rodada<br><br>
+
+    Você cria uma proporção absoluta com ponto fraco
+    na razão 7:3, focada em execução imediata.
+
+    Enquanto a criatura estiver dividida,
+    você pode optar por sofrer -14 no teste de acerto
+    para mirar no ponto fraco.
+
+    Caso acerte, o golpe causa 6 níveis de dano acima
+    da arma utilizada e recebe +6 de dano adicional.
+
+    Ataques focados reduzem a margem de crítico em 2.
+
+    Após atingir o ponto fraco cinco vezes
+    ou após 1 rodada, a proporção é desfeita.
+    `
+},
+
+{
+    nome: "Kokusen!",
+    categoria: "PROPORÇÃO",
+    nivel: 5,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Completa",
+    alcance: "Corpo a Corpo",
+    alvo: "Uma Criatura",
+    duracao: "Um Ataque",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Completa<br>
+    <strong>Alcance:</strong> Corpo a Corpo<br>
+    <strong>Alvo:</strong> Uma Criatura<br>
+    <strong>Duração:</strong> Um Ataque<br><br>
+
+    Sua precisão atinge o ápice, evocando as faíscas negras
+    da execução perfeita.
+
+    Ao utilizar esta habilidade, você consome sua ação
+    para preparar o golpe e mantém apenas a ação comum
+    necessária para realizar o ataque.
+
+    Seu próximo ataque é considerado um <strong>Kokusen garantido</strong>.
+
+    Após o uso, você recebe 1 nível de <strong>Exaustão</strong>.
+    Cada uso adicional após o primeiro na mesma cena
+    concede 1 nível adicional de Exaustão cumulativa.
+    `
+},
+
+{
+    nome: "Besta Negra",
+    categoria: "PROPORÇÃO",
+    nivel: 5,
+    tipo: "Habilidade de Técnica",
+    conjuracao: "Ação Completa",
+    alcance: "Próprio",
+    alvo: "Próprio",
+    duracao: "5 Rodadas",
+    desc: `
+    <strong>Habilidade de Técnica</strong><br>
+    <strong>Conjuração:</strong> Ação Completa<br>
+    <strong>Alcance:</strong> Próprio<br>
+    <strong>Alvo:</strong> Próprio<br>
+    <strong>Duração:</strong> 5 Rodadas<br><br>
+
+    Você entra em um fluxo absoluto de combate,
+    um misto de raiva e determinação,
+    disposto a encerrar a luta nos próximos instantes.
+
+    Durante o modo <strong>Besta Negra</strong>, você recebe:
+
+    <br><br>
+
+    <strong>Kokusen Aprimorado:</strong>
+    A margem de Kokusen é reduzida em 2
+    no primeiro Kokusen realizado após a ativação.
+
+    <br><br>
+
+    <strong>Aumento de Capacidades:</strong>
+    Você recebe +4 em Força ou Destreza
+    (escolhido na ativação) e seus ataques
+    causam 5 níveis adicionais de dano.
+
+    <br><br>
+
+    <strong>Técnica Fluida:</strong>
+    Você pode utilizar suas técnicas de
+    Divisão de Proporção como Ação Livre
+    durante a duração desta habilidade.
+    `
+},
+    
     
 ];
 
@@ -12548,3 +13134,4 @@ window.previewImage = function(event) {
     reader.readAsDataURL(arquivo);
 
 };
+
